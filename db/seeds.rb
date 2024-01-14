@@ -7,3 +7,35 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+puts "Destroy User"
+Advisor.destroy_all
+User.destroy_all
+
+puts "Creating User"
+
+User.create(
+  email: "clement@test.com",
+  first_name: "Clement",
+  last_name: "Nico",
+  password: "123456",
+  cgp: false
+)
+
+jean = User.create(
+  email: "jean@test.com",
+  first_name: "Jean",
+  last_name: "Darraud",
+  password: "123456",
+  cgp: true
+)
+
+puts "Creating Advisor"
+
+if jean.cgp?
+  Advisor.create(
+    user_id: jean.id,
+    bio: 'Je suis un conseiller en gestion de patrimoine expérimenté.',
+    speciality: 'Finance verte'
+  )
+end
