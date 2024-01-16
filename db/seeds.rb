@@ -19,23 +19,31 @@ User.create(
   first_name: "Clement",
   last_name: "Nico",
   password: "123456",
-  cgp: false
 )
 
-jean = User.create(
+Advisor.create!(
   email: "jean@test.com",
   first_name: "Jean",
   last_name: "Darraud",
   password: "123456",
-  cgp: true
+  bio: 'Je suis un conseiller en gestion de patrimoine expérimenté.',
+  speciality: 'Finance verte',
 )
 
 puts "Creating Advisor"
 
-if jean.cgp?
-  Advisor.create(
-    user_id: jean.id,
-    bio: 'Je suis un conseiller en gestion de patrimoine expérimenté.',
-    speciality: 'Finance verte'
-  )
-end
+# if jean.is_advisor?
+#   Advisor.create!(
+#     user_id: jean.id,
+#     bio: 'Je suis un conseiller en gestion de patrimoine expérimenté.',
+#     speciality: 'Finance verte',
+#     email: jean.email,
+#     password: jean.password,
+#     encrypted_password: jean.encrypted_password,
+#     reset_password_token: jean.reset_password_token,
+#     reset_password_sent_at: jean.reset_password_sent_at,
+#     remember_created_at: jean.remember_created_at,
+#     first_name: jean.first_name,
+#     last_name: jean.last_name,
+#   )
+# end
