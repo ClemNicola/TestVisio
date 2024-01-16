@@ -8,9 +8,9 @@ Rails.application.routes.draw do
     registrations: 'advisors/registrations'
   }
 
-  namespace :adivsors do
-    root :to => "pages#dashboard"
-  end
+  # namespace :adivsors do
+  #   root :to => "pages#dashboard"
+  # end
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',

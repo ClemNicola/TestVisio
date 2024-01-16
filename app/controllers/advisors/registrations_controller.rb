@@ -4,25 +4,29 @@ class Advisors::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
-  protected
-
-  def after_sign_up_path_for(resource)
-    pages_dashboard_path
-  end
-
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :bio, :speciality])
-  end
   # GET /resource/sign_up
   # def new
   #   super
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+  end
 
+  protected
+
+  def after_sign_up_path_for(resource)
+    if resource.is_a?(Advisor)
+      pages_dashboard_path
+    else
+      root_path
+    end
+  end
+
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :bio, :speciality])
+  end
   # GET /resource/edit
   # def edit
   #   super
