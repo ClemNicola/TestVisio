@@ -1,8 +1,7 @@
 class AppointmentTypesController < ApplicationController
 
   before_action :set_appointment_type, only: %i[show edit update destroy]
-  # before_action :authenticate_advisor!, only: [:new, :create, :edit, :update, :destroy]
-
+  before_action :authenticate_advisor!, only: %i[new create edit update destroy]
 
 
   def index
@@ -13,13 +12,8 @@ class AppointmentTypesController < ApplicationController
   end
 
   def new
-    if advisor_signed_in?
-      @advisor = current_advisor
-      @appointment_type = current_advisor.appointment_types.new
-    else
-      Rails.logger.error "Advisor not signed in: #{current_advisor.inspect}"
-      redirect_to new_advisor_session_path and return
-    end
+    @advisor = current_advisor
+    @appointment_type = current_advisor.appointment_types.new
   end
 
   def create
