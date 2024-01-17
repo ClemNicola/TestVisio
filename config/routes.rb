@@ -8,16 +8,13 @@ Rails.application.routes.draw do
     registrations: 'advisors/registrations'
   }
 
-  # namespace :advisors do
-  #   root :to => "pages#dashboard"
-  # end
-
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-
   root to: "pages#home"
+  
+  resources :appointment_types
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

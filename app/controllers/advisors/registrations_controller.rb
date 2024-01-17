@@ -10,9 +10,9 @@ class Advisors::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  def create
-    super
-  end
+  # def create
+  #   super
+  # end
 
   protected
 
@@ -20,7 +20,7 @@ class Advisors::RegistrationsController < Devise::RegistrationsController
     if resource.is_a?(Advisor)
       pages_advisors_path
     else
-      root_path
+      super
     end
   end
 
