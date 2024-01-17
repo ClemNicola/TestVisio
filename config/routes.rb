@@ -3,20 +3,22 @@ Rails.application.routes.draw do
   get 'pages/users'
   get 'pages/advisors'
   # get 'users/advisors'
-  devise_for :advisors, controllers: {
-    sessions: 'advisors/sessions',
-    registrations: 'advisors/registrations'
-  }
+
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
-  root to: "pages#home"
+  devise_for :advisors, controllers: {
+    sessions: 'advisors/sessions',
+    registrations: 'advisors/registrations'
+  }
 
   resources :advisors do
     resources :appointment_types
   end
+
+  root to: "pages#home"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

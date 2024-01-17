@@ -10,7 +10,9 @@ class Advisors::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   # def create
-  #   super
+  #   super do |advisor|
+  #     session[:advisor_id] = advisor.id if advisor.persisted?
+  #   end
   # end
 
   # DELETE /resource/sign_out

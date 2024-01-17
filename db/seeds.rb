@@ -19,6 +19,7 @@ User.create(
   first_name: "Clement",
   last_name: "Nico",
   password: "123456",
+  # encrypted_password: "123456"
 )
 
 Advisor.create!(
@@ -26,6 +27,7 @@ Advisor.create!(
   first_name: "Jean",
   last_name: "Darraud",
   password: "123456",
+  # encrypted_password: "123456",
   bio: 'Je suis un conseiller en gestion de patrimoine expérimenté.',
   speciality: 'Finance verte',
 )

@@ -16,6 +16,7 @@ class PagesController < ApplicationController
   end
 
   def advisors
+    Rails.logger.debug "Current Advisor: #{current_advisor.inspect}, Signed In: #{advisor_signed_in?}"
     @advisor = current_advisor
   end
 end
