@@ -2,7 +2,7 @@ class AppointmentTypesController < ApplicationController
 
   before_action :set_appointment_type, only: %i[show edit update destroy]
   before_action :authenticate_advisor!
-  before_action :authenticate_user!
+
 
   def index
     @appointment_types = current_advisor.appointment_types
@@ -12,7 +12,9 @@ class AppointmentTypesController < ApplicationController
   end
 
   def new
-    @appointment_type = current_advisor.appointment_types.new
+    if advisor_signed_in?
+      @appointment_type = current_advisor.appointment_types.new
+    end
   end
 
   def create

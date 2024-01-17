@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :appointments
-  has_many :appointment_types
   has_many :cgps, through: :appointments
 
   validates :email, presence: true, uniqueness: true

@@ -12,8 +12,10 @@ class PagesController < ApplicationController
   # end
 
   def users
+    @user = current_user
   end
 
   def advisors
+    @advisor = current_advisor
   end
 end

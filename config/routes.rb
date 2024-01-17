@@ -13,8 +13,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   root to: "pages#home"
-  
-  resources :appointment_types
+
+  resources :advisors do
+    resources :appointment_types
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
