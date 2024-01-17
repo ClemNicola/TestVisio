@@ -18,7 +18,7 @@ class Advisors::RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(resource)
     if resource.is_a?(Advisor)
-      pages_dashboard_path
+      pages_advisors_path
     else
       root_path
     end

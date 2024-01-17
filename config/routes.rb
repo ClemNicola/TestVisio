@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     registrations: 'advisors/registrations'
   }
 
-  # namespace :adivsors do
+  # namespace :advisors do
   #   root :to => "pages#dashboard"
   # end
 
