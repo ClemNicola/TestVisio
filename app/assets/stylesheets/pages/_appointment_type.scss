@@ -1,0 +1,55 @@
+.simple_form{
+  display: flex;
+  flex-direction: column;
+}
+.mb-6{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2vh;
+  width: 80%
+}
+
+.btn{
+  width: 80%;
+  margin-top: 4vh;
+}
+
+.card-product {
+  overflow: hidden;
+  height: 50vh;
+  background: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+.card-product img {
+  height: 50%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-product h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-product p {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+.card-product .appoint-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex:1;
+  justify-content: center;
+  align-items: center;
+}

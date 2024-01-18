@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
 
-  skip_before_action :authenticate_user!, only: :home
-  skip_before_action :authenticate_advisor!, only: :home
+  skip_before_action :authenticate_any!, only: :home
   before_action :authenticate_advisor!, only: [:advisors]
   before_action :authenticate_user!, only: [:users]
 
@@ -18,5 +17,6 @@ class PagesController < ApplicationController
 
   def advisors
     @advisor = current_advisor
+    @appointment_types = AppointmentType.all
   end
 end

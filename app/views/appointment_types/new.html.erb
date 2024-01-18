@@ -1,4 +1,36 @@
 <div class="container">
-  <h2>Welcome</h2>
+  <h2>Create an appointment Type</h2>
   <%= "#{@advisor.first_name}" %>
+
+  <%=  simple_form_for([@advisor,@appointment_type]) do |form| %>
+    <div class="mb-6">
+      <%= form.label :name, class: "label-text" %>
+      <%= form.text_field :name, class:"input-text" %>
+    </div>
+
+    <div class="mb-6">
+      <%= form.label :location, class: "label-text" %>
+      <%= form.text_field :location, class:"input-text" %>
+    </div>
+
+    <div class="mb-6">
+      <%= form.label :description, class: "label-text" %>
+      <%= form.rich_text_area :description, class:"input-text" %>
+    </div>
+
+    <div class="mb-6">
+      <%= form.label :color, class: "label-text" %>
+      <%= form.text_field :color, class:"input-text" %>
+    </div>
+
+    <div class="mb-6">
+      <div class="d-flex align-items-center">
+        <%= form.label :duration, class: "label-text"%>
+        <span class="duration"> (en minutes)</span>
+      </div>
+      <%= form.number_field :duration, class:"input-text", min: 0 %>
+    </div>
+
+    <%= form.submit class: "btn btn-info" %>
+  <% end  %>
 </div>
