@@ -1,4 +1,10 @@
-<h1>Pages#advisors</h1>
-<p>Find me in app/views/pages/advisors.html.erb</p>
+<div class="container">
+  <h1>Pages#advisors</h1>
+  <p>Find me in app/views/pages/advisors.html.erb</p>
 
-<%= link_to "create an appointment type", new_advisor_appointment_type_path(advisor_id: current_advisor.id)%>
+  <h2>Welcome</h2>
+  <%= "#{@advisor.first_name} - #{@advisor.last_name}"%>
+  <br>
+  <br>
+  <%= link_to "create an appointment type", new_advisor_appointment_type_path(advisor_id: current_advisor.id)%>
+</div>

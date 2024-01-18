@@ -2,7 +2,7 @@ class AppointmentTypesController < ApplicationController
 
   before_action :set_appointment_type, only: %i[show edit update destroy]
   before_action :authenticate_advisor!, only: %i[new create edit update destroy]
-
+  skip_before_action :authenticate_advisor!, only: %i[new create edit update destroy]
 
   def index
     @appointment_types = current_advisor.appointment_types

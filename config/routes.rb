@@ -1,14 +1,9 @@
 Rails.application.routes.draw do
-  get 'pages/dashboard'
-  get 'pages/users'
+  # get 'pages/dashboard'
+  # get 'pages/users'
   get 'pages/advisors'
   # get 'users/advisors'
 
-
-  devise_for :users, controllers: {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations'
-  }
   devise_for :advisors, controllers: {
     sessions: 'advisors/sessions',
     registrations: 'advisors/registrations'
@@ -17,6 +12,11 @@ Rails.application.routes.draw do
   resources :advisors do
     resources :appointment_types
   end
+
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations'
+  }
 
   root to: "pages#home"
 
