@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     resources :appointment_types
   end
 
+  resources :availabilities
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
