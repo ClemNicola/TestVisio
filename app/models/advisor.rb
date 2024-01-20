@@ -4,8 +4,8 @@ class Advisor < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable
   has_many :users, through: :appointments
-  has_many :availabilities
-  has_many :appointment_types
+  has_many :availabilities, dependent: :destroy
+  has_many :appointment_types, dependent: :destroy
 
   validates :bio, presence: true
   validates :speciality, presence: true, inclusion: { in: ['Finance verte', 'Retraite', 'Optimisation fiscale'] }
