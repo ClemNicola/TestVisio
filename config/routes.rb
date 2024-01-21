@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :availabilities
+  resources :appointments
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',

@@ -4,5 +4,6 @@
 //= link_tree ../../../vendor/javascript .js
 //= link popper.js
 //= link bootstrap.min.js
-//= require moment
-//= require fullcalendar
+//= link moment
+//= link fullcalendar
+//= link calendar.js
