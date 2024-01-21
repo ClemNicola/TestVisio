@@ -5,7 +5,7 @@ class AppointmentTypesController < ApplicationController
   # skip_before_action :authenticate_advisor!, only: %i[new create edit update destroy]
 
   def index
-    @appointment_types = @advisor.appointment_types
+    @appointment_types = AppointmentType.where(advisor_id: @advisor.id)
   end
 
   def show
