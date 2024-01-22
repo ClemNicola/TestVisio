@@ -1,0 +1,35 @@
+<div class="container">
+<div class="advisor-appoint">
+  <img src="https://source.unsplash.com/random/?portrait" alt="Advisor">
+  <div class="advisor-inf">
+    <h2><%= "#{@advisor.first_name} #{@advisor.last_name}" %></h2>
+    <h4><%= @advisor.bio %></h4>
+  </div>
+  <div class="form-rdv">
+    <h2>Prendre Rdv</h2>
+    <br>
+    <%= form_with model: @appointment, url: advisor_appointments_path(@advisor), local: true do |form| %>
+      <div class="select-appoint">
+        <%= form.label :apppointment_type_id, "Type de Rendez-vous" %>
+        <%= form.collection_select :apppointment_type_id, @advisor.appointment_types, :id, :name, prompt: "Sélectionnez un type" %>
+      </div>
+
+      <div class="select-appoint">
+        <%= form.label :date, "Quelle date" %>
+        <%= form.date_field :date %>
+      </div>
+
+      <div class="select-appoint">
+        <%= form.label :time, "Quelle heure" %>
+        <%= form.time_field :time %>
+      </div>
+
+      <div class="sub-btn">
+        <%= form.submit "Confirmation" %>
+      </div>
+
+    <% end  %>
+  </div>
+</div>
+
+</div>

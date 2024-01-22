@@ -20,7 +20,11 @@ class Availability < ApplicationRecord
   # def self.day_of_week_options
   #   DAYS_OF_WEEK.map { |name, number| [name, number] }
   # end
-
+  def covers_day?(date)
+    day_of_week = date.strftime('%A').downcase
+    self[day_of_week]
+  end
+  
   private
 
   def set_default_times

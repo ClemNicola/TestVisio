@@ -6,4 +6,4 @@
 //= link bootstrap.min.js
 //= link moment
 //= link fullcalendar
-//= link calendar.js
+

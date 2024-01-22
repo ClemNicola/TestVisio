@@ -1,0 +1,24 @@
+.advisor-appoint{
+  display: flex;
+  padding: 3vh;
+  background-color: rgba(9, 188, 242, 0.365);
+}
+
+.advisor-appoint img{
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+}
+
+.advisor-inf {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5vw;
+  justify-content: center;
+}
+
+.form-rdv{
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}

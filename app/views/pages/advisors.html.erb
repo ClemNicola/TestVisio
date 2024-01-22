@@ -20,10 +20,9 @@
               <p><%= appointment_type.description %></p>
             </div>
           </div>
-
         </div>
       <% end  %>
-      </div>
+    </div>
   </div>
 <br>
   <h2 class="mt-3">Manage your Availabilities</h2>
@@ -99,7 +98,7 @@
 
 <br>
   <h2 class="mt-3">Manage your Appointments</h2>
-  <%= link_to 'My appointments', appointments_path %>
+  <%= link_to 'My appointments', advisor_appointments_path(@advisor) %>
   <table class="table table-hover table-dark">
     <thead>
       <tr>

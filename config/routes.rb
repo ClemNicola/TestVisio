@@ -13,8 +13,11 @@ Rails.application.routes.draw do
     resources :appointment_types
   end
 
+  resources :advisors do
+    resources :appointments
+  end
+
   resources :availabilities
-  resources :appointments
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',

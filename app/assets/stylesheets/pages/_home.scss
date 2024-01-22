@@ -1,1 +1,48 @@
 // Specific CSS for your home-page
+.card-advisor {
+  overflow: hidden;
+  height: 400px;
+  background: white;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 5px;
+}
+
+.card-advisor img {
+  height: 50%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.advisor-info{
+  padding: 3vh ;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.advisor-info h2 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.advisor-info a {
+  font-size: 12px;
+  line-height: 1.4;
+  opacity: .7;
+  margin-bottom: 0;
+  margin-top: 8px;
+}
+
+
+.card-advisor .adivosr-info {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex:1;
+  justify-content: center;
+  align-items: center;
+}
