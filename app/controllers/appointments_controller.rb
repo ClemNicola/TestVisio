@@ -1,5 +1,5 @@
 class AppointmentsController < ApplicationController
-  before_action :authenticate_advisor!
+  # before_action :authenticate_an!
   before_action :set_advisor
   before_action :set_appointment, only: %i[show edit update destroy]
 
