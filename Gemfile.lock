@@ -319,6 +319,7 @@ DEPENDENCIES
   jbuilder
   momentjs-rails
   pg (~> 1.1)
+  popper_js
   puma (>= 5.0)
   rails (~> 7.1.2)
   sassc-rails

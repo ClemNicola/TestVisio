@@ -3,7 +3,10 @@ source "https://rubygems.org"
 ruby "3.1.2"
 
 gem 'fullcalendar-rails'
+
 gem 'momentjs-rails'
+
+gem 'popper_js'
 
 gem 'simple_calendar'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
