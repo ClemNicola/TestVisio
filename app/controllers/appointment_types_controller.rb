@@ -12,7 +12,6 @@ class AppointmentTypesController < ApplicationController
   end
 
   def new
-
     @appointment_type = @advisor.appointment_types.new
   end
 

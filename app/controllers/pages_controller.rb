@@ -10,7 +10,7 @@ class PagesController < ApplicationController
   end
 
   def show_advisor
-    
+    @advisor = Advisor.find(params[:id])
   end
 
   def users

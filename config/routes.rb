@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # get 'pages/dashboard'
   # get 'pages/users'
   get 'pages/advisors'
-  get 'pages/show_advisor'
+  get 'pages/show_advisor/:id', to: 'pages#show_advisor', as: 'show_advisor'
   # get 'users/advisors'
   get 'save_appointment/:id', to: 'appointments#save_appointment', as: 'save_advisor_appointment'
 

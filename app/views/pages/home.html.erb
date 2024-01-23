@@ -9,7 +9,7 @@
             <div class="advisor-info">
               <h2><%= "#{advisor.first_name} #{advisor.last_name}" %></h2>
               <h6><%= advisor.speciality%></h6>
-              <%= link_to "prendre rendez-vous", pages_show_advisor_path(advisor) %>
+              <%= link_to "prendre rendez-vous", show_advisor_path(advisor) %>
             </div>
           </div>
         </div>
