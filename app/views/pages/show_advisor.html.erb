@@ -10,14 +10,15 @@
 </div>
   <!-- BTN Modal -->
 
-  <%= link_to save_advisor_appointment_path(@advisor), data: {controller: "save-appointment"} do %>
-    <i class="fa-solid fa-calendar-days"></i>
-  <% end  %>
+<%= link_to save_advisor_appointment_path(@advisor), data: { controller: "save-appointment", action: "click->save-appointment#showModal" } do %>
+  <i class="fa-solid fa-calendar-days"></i> Prendre un rendez-vous
+<% end %>
+
 
 </div>
 
     <%# <%= form_with model: @appointment, url: advisor_appointments_path(@advisor), local: true do |form| %>
-      <%# <div class="select-appoint"> %> 
+      <%# <div class="select-appoint"> %>
         <%# <%= form.label :apppointment_type_id, "Type de Rendez-vous" %>
         <%# <%= form.collection_select :apppointment_type_id, @advisor.appointment_types, :id, :name, prompt: "Sélectionnez un type" %>
       <%# </div> %>
