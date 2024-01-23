@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
   # before_action :authenticate_an!
-  before_action :set_advisor
+  before_action :set_advisor, only: %i[show save_appointment new create]
   before_action :set_appointment, only: %i[show edit update destroy]
 
   def index
@@ -12,6 +12,10 @@ class AppointmentsController < ApplicationController
 
   def new
     @appointment = Appointment.new
+  end
+
+  def save_appointment
+
   end
 
   def create

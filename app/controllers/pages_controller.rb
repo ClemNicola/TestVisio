@@ -6,11 +6,12 @@ class PagesController < ApplicationController
 
   # skip_before_action :authenticate_advisor!, only: :home
   def home
-    @advisors = Advisor.all 
+    @advisors = Advisor.all
   end
 
-  # def dashboard
-  # end
+  def show_advisor
+    
+  end
 
   def users
     @user = current_user

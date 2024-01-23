@@ -6,4 +6,6 @@
 //= link bootstrap.min.js
 //= link moment
 //= link fullcalendar
-
+//= link jquery
+//= link jquery_ujs
+//= link bootstrap
