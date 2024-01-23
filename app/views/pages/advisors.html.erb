@@ -46,50 +46,50 @@
       <tr>
         <td>Monday</td>
         <td><%= availability.monday %></td>
-        <td><%= availability.start_time %></td>
-        <td><%= availability.end_time%></td>
+        <td><%= availability.start_time.strftime('%H:%M') %></td>
+        <td><%= availability.end_time.strftime('%H:%M')%></td>
         <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
       </tr>
       <tr>
         <td>Tuesday</td>
         <td><%= availability.tuesday %></td>
-        <td><%= availability.start_time %></td>
-        <td><%= availability.end_time%></td>
+        <td><%= availability.start_time.strftime('%H:%M') %></td>
+        <td><%= availability.end_time.strftime('%H:%M')%></td>
         <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
       </tr>
       <tr>
         <td>Wednesday</td>
         <td><%= availability.wednesday %></td>
-        <td><%= availability.start_time %></td>
-        <td><%= availability.end_time%></td>
+        <td><%= availability.start_time.strftime('%H:%M') %></td>
+        <td><%= availability.end_time.strftime('%H:%M')%></td>
         <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
       </tr>
       <tr>
         <td>Thursday</td>
         <td><%= availability.thursday %></td>
-        <td><%= availability.start_time %></td>
-        <td><%= availability.end_time%></td>
+        <td><%= availability.start_time.strftime('%H:%M') %></td>
+        <td><%= availability.end_time.strftime('%H:%M')%></td>
         <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
       </tr>
       <tr>
         <td>Friday</td>
         <td><%= availability.friday %></td>
-        <td><%= availability.start_time %></td>
-        <td><%= availability.end_time%></td>
+        <td><%= availability.start_time.strftime('%H:%M') %></td>
+        <td><%= availability.end_time.strftime('%H:%M')%></td>
         <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
       </tr>
       <tr>
         <td>Saturday</td>
         <td><%= availability.saturday %></td>
-        <td><%= availability.start_time %></td>
-        <td><%= availability.end_time%></td>
+        <td><%= availability.start_time.strftime('%H:%M') %></td>
+        <td><%= availability.end_time.strftime('%H:%M')%></td>
         <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
       </tr>
       <tr>
         <td>Sunday</td>
         <td><%= availability.sunday %></td>
-        <td><%= availability.start_time %></td>
-        <td><%= availability.end_time%></td>
+        <td><%= availability.start_time.strftime('%H:%M') %></td>
+        <td><%= availability.end_time.strftime('%H:%M')%></td>
         <td><%= link_to 'Edit', edit_availability_path(availability) %></td>
       </tr>
     <% end  %>

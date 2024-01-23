@@ -4,7 +4,6 @@ class AvailabilitiesController < ApplicationController
   before_action :set_advisor, only: %i[index new create]
 
   def index
-
     @availabilities = @advisor.availabilities
   end
 
@@ -41,11 +40,11 @@ class AvailabilitiesController < ApplicationController
   private
 
   def set_advisor
-    @advisor =  current_advisor
+    @advisor = current_advisor
   end
 
   def set_availability
-    @availability = @advisor.availabilities.find(params[:id])
+    @availability = current_advisor.availabilities.find(params[:id])
   end
 
   def availability_params
