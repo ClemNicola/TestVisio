@@ -8,8 +8,9 @@
     <h4><%= @advisor.bio %></h4>
   </div>
 </div>
-
-<%= link_to "Make an appointment", new_advisor_appointment_path(advisor_id: @advisor.id), data: { turbo_frame: "appointment_form" }%>
+<%# <div class="modal-link" data-controller="user-modal"> %>
+  <%= link_to "Make an appointment", new_advisor_appointment_path(advisor_id: @advisor.id), data: { controller: "new-appointment", turbo_frame: "appointment_form" } %>
+<%# </div> %>
 
 
 

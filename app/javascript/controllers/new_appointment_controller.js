@@ -1,13 +1,13 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="user-modal"
+// Connects to data-controller="new-appointment"
 export default class extends Controller {
   connect() {
-    console.log('Im conencted')
+    console.log('Im connected')
   }
 
   initialize(){
-    this.element.setAttribute("data-action", "click->user-modal#showModal")
+    this.element.setAttribute("data-action", "click->new-appointment  #showModal")
   }
 
   showModal(e){

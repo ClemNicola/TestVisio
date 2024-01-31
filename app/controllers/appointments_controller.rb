@@ -11,7 +11,6 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-
     @appointment = Appointment.new
 
     respond_to do |format|
