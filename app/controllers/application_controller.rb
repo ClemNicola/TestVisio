@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_any!
 
-
   private
 
   def authenticate_any!

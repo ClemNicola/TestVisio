@@ -11,11 +11,13 @@ class AppointmentsController < ApplicationController
   end
 
   def new
-    @appointment = Appointment.new
-  end
 
-  def save_appointment
-    @advisor = Advisor.find(params[:id])
+    @appointment = Appointment.new
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def create
@@ -44,11 +46,11 @@ class AppointmentsController < ApplicationController
     @advisor = Advisor.find(params[:advisor_id])
   end
 
-  def set_appointment
-    @appointment = Appointment.find(params[:id])
-  end
+  # def set_appointment
+  #   @appointment = Appointment.find(params[:id])
+  # end
 
   def appointment_params
-    params.require(:appointment).permit(:appointment_type_id, :date, :time, :status)
+    params.require(:appointment).permit(:appointment_type_id, :date, :time, :status, :user_id)
   end
 end
