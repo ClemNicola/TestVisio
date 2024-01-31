@@ -11,7 +11,7 @@ export default class extends Controller {
     this.modal.hide()
   }
 
-  submit(e) {
+  submitEnd(e) {
     this.modal.hide()
   }
 

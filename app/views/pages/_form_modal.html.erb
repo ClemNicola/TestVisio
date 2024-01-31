@@ -7,7 +7,30 @@
           <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <%= render "pages/appointment_form", appointment: @appointment, advisor: @advisor %>
+        <%# <%= render "pages/appointment_form", appointment: @appointment, advisor: @advisor %> 
+        <%= form_with model: @appointment, url: advisor_appointments_path(@advisor), local: true do |form| %>
+          <div class="modal-body">
+              <div class="select-appoint">
+                <%= form.label :appointment_type_id, "Type de Rendez-vous" %>
+                <%= form.collection_select :appointment_type_id, @advisor.appointment_types, :id, :name, prompt: "Sélectionnez un type" %>
+              </div>
+
+              <div class="select-appoint">
+                <%= form.label :date, "Quelle date" %>
+                <%= form.date_field :date %>
+              </div>
+
+              <div class="select-appoint">
+                <%= form.label :time, "Quelle heure" %>
+                <%= form.time_field :time %>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <%= form.submit "Confirmation", class:'btn btn-primary', data: {action: "click->bs-modal#submitEnd"} %>
+            </div>
+        <% end %>
       </div>
     </div>
   </div>
