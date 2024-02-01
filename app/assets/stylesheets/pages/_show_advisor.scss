@@ -1,0 +1,4 @@
+.appointment-radio:checked + .appointment-label {
+  border-color: #2563eb !important; /* Bleu Tailwind 600 */
+  color: #2563eb; /* Texte Bleu Tailwind 600 */
+}

@@ -15,6 +15,11 @@ module.exports = {
       },
     },
   },
+  variants: {
+    extend: {
+      borderColor: ['peer-checked'], 
+    },
+  },
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
