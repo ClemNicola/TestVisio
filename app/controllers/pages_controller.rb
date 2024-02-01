@@ -11,13 +11,14 @@ class PagesController < ApplicationController
 
   def show_advisor
     @advisor = Advisor.find(params[:id])
+    @appointment_types = AppointmentType.where(advisor_id: @advisor.id)
   end
 
   def users
     @user = current_user
   end
 
-  def advisors
+  def advisor
     @advisor = current_advisor
     @appointment_types = @advisor.appointment_types
     @availabilities = @advisor.availabilities

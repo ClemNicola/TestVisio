@@ -9,3 +9,4 @@
 //= link jquery
 //= link jquery_ujs
 //= link bootstrap
+//= link_tree ../builds
