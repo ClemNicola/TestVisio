@@ -20,7 +20,5 @@ class PagesController < ApplicationController
 
   def advisor
     @advisor = current_advisor
-    @appointment_types = @advisor.appointment_types
-    @availabilities = @advisor.availabilities
   end
 end

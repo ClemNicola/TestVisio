@@ -1,0 +1,54 @@
+.largeur-modal {
+  width: 45vw !important;
+}
+
+.form-header .stepIndicator.active {
+  font-weight: 600;
+}
+.form-header .stepIndicator.finish {
+  font-weight: 600;
+  color: #5a67d8;
+}
+.form-header .stepIndicator::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: 9;
+  width: 20px;
+  height: 20px;
+  background-color: #c3dafe;
+  border-radius: 50%;
+  border: 3px solid #ebf4ff;
+  margin:-20px 0;
+}
+.form-header .stepIndicator.active::before {
+  background-color: #a3bffa;
+  border: 3px solid #c3dafe;
+  margin:-20px 0;
+}
+.form-header .stepIndicator.finish::before {
+  background-color: #5a67d8;
+  border: 3px solid #c3dafe;
+  margin:-20px 0;
+}
+.form-header .stepIndicator::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  width: 135%;
+  height: 3px;
+  background-color: #f3f3f3;
+  margin:-20px 0;
+}
+.form-header .stepIndicator.active::after {
+  background-color: #a3bffa;
+}
+.form-header .stepIndicator.finish::after {
+  background-color: #5a67d8;
+}
+.form-header .stepIndicator:last-child:after {
+  display: none;
+}
