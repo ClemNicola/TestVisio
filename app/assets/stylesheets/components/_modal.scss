@@ -52,3 +52,19 @@
 .form-header .stepIndicator:last-child:after {
   display: none;
 }
+
+
+.step{
+  display: none;
+}
+
+#nextBtn {
+  border-radius: 4px;
+  background-color: #6c8dd5 !important;
+}
+
+#prevBtn {
+  border-radius: 4px;
+  background-color: #e9e9ea !important;
+  color: rgb(104, 147, 245);
+}
