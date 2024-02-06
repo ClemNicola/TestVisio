@@ -12,11 +12,6 @@ class AppointmentsController < ApplicationController
 
   def new
     @appointment = Appointment.new
-
-    respond_to do |format|
-      format.html
-      format.turbo_stream
-    end
   end
 
   def create
@@ -24,7 +19,7 @@ class AppointmentsController < ApplicationController
     @appointment.user = current_user
 
     if @appointment.save
-      redirect_to @appointment, notice: 'Appointment was successfully created'
+      redirect_to root_path, notice: 'Appointment was successfully created'
     else
       render :new
     end

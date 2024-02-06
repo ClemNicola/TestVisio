@@ -35,7 +35,8 @@
                   </button>
               </div>
               <!-- Modal body -->
-              <form id="appointmentForm" class="p-12 shadow-md rounded-2xl bg-white mx-auto border-solid border-2 border-gray-100 mb-8" action="#!">
+              <%# <form id="appointmentForm" class="p-12 shadow-md rounded-2xl bg-white mx-auto border-solid border-2 border-gray-100 mb-8" action="#!"> %>
+              <%= form_for(Appointment.new, url: advisor_appointments_path(@advisor),id:"appointmentForm", class:"p-12 shadow-md rounded-2xl bg-white mx-auto border-solid border-2 border-gray-100 mb-8", action:"#!") do |f| %>
                 <div class="step p-4 md:p-5">
                     <p class="text-gray-500 dark:text-gray-400 mb-4">Select your appointment type:</p>
                     <ul class="space-y-4 mb-4">
@@ -86,11 +87,11 @@
 
                 <!-- start previous / next buttons -->
                 <div class="form-footer flex gap-3">
-                    <button type="button" id="prevBtn" class="flex-1 focus:outline-none border border-gray-300 py-2 px-5 rounded-lg shadow-sm text-center text-gray-700 text-lg" onclick="nextPrev(-1)">Previous</button>
-                    <button type="button" id="nextBtn" class="flex-1 border border-transparent focus:outline-none p-3 rounded-md text-center text-white  text-lg" onclick="nextPrev(1)">Next</button>
+                    <button type="button" id="prevBtn" class="flex-1 focus:outline-none border border-gray-300 py-2 px-5 rounded-lg shadow-sm text-center text-gray-700 text-lg">Previous</button>
+                    <button type="button" id="nextBtn" class="flex-1 border border-transparent focus:outline-none p-3 rounded-md text-center text-white  text-lg">Next</button>
                 </div>
                 <!-- end previous / next buttons -->
-              </form>
+              <% end %>
               <%# <button class="next-step-button text-white inline-flex w-full justify-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                   Next step
               </button> %>

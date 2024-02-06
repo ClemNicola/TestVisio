@@ -1,6 +1,7 @@
 var currentTab = 0; // Current tab is set to be the first tab (0)
         showTab(currentTab); // Display the current tab
-
+        const next = document.getElementById('nextBtn');
+        const prev = document.getElementById('prevBtn');
         function showTab(n) {
           // This function will display the specified tab of the form...
           var x = document.getElementsByClassName("step");
@@ -70,3 +71,71 @@ var currentTab = 0; // Current tab is set to be the first tab (0)
           //... and adds the "active" class on the current step:
           x[n].className += " active";
         }
+        prev.addEventListener('click', function(){nextPrev(-1); });
+        next.addEventListener('click', function(){nextPrev(1); });
+
+// let currentTab = 0;
+// showTab(currentTab);
+
+// const prev = document.getElementById('prevBtn');
+// const next = document.getElementById('nextBtn');
+
+// function showTab(n){
+//   const steps = document.getElementsByClassName('step');
+//   steps[n].style.display = 'block';
+//   if (n == 0){
+//     document.getElementById('prevBtn').style.display = "none";
+//   } else {
+//     document.getElementById('prevBtn').style.display = "inline";
+//   }
+
+//   if (n == steps.length -1 ){
+//     document.getElementById('nextBtn').innerHTML = "Submit";
+//   }else {
+//     document.getElementById('nextBtn').innerHTML = "Next";
+//   }
+
+//   fixStepIndicator(n)
+// }
+
+// function fixStepIndicator(n){
+//   let i, x = document.getElementsByClassName('stepIndicator');
+//   for(i = 0; i < x.length; i ++){
+//     x[i].className = x[i].className.replace("active", "");
+//   }
+//   x[n].className += "active";
+// }
+
+// function nextPrev(n){
+//   const steps = document.getElementsByClassName('step');
+//   if (n == 1 && !validateForm()) return false;
+//   steps[currentTab].style.display = "none";
+//   currentTab = currentTab + n;
+
+//   if (currentTab >= steps.length){
+//     document.getElementById("signUpForm").submit();
+//     return false;
+//   }
+//   showTab(currentTab)
+// }
+
+// function validateForm(){
+//   let x,y,i, valid = true;
+
+//   x = document.getElementsByClassName('step');
+//   y = x[currentTab].getElementsByTagName('input');
+
+//   for (i = 0; i < y.length; i ++){
+//     if (y[i].value = ""){
+//       y[i].className += " invalid";
+//       valid = false;
+//     }
+//   }
+//   if(valid) {
+//     document.getElementsByClassName("stepIndicator")[currentTab].className += " finish";
+//   }
+//   return valid;
+// }
+
+// prev.addEventListener('click', function(){nextPrev(-1); });
+// next.addEventListener('click', function(){nextPrev(1); });
