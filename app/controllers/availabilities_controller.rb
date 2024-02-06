@@ -5,6 +5,7 @@ class AvailabilitiesController < ApplicationController
 
   def index
     @availabilities = @advisor.availabilities
+    render json: @advisor.availabilities
   end
 
   def show
@@ -48,6 +49,6 @@ class AvailabilitiesController < ApplicationController
   end
 
   def availability_params
-    params.require(:availability).permit(:monday,:tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :star_time, :end_time)
+    params.require(:availability).permit(:monday, :tuesday, :wednesday, :thursday, :friday, :saturday, :sunday, :start_time, :end_time)
   end
 end

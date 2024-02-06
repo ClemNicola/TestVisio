@@ -12,3 +12,4 @@ pin "@rails/actiontext", to: "actiontext.esm.js"
 
 
 pin "script", to: "script.js"
+pin "calendar", to: "calendar.js"

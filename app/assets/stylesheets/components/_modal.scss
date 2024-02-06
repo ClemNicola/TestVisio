@@ -68,3 +68,28 @@
   background-color: #e9e9ea !important;
   color: rgb(104, 147, 245);
 }
+
+.week-day{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.week-day .day{
+  flex-grow: 1;
+  text-align: center;
+  cursor: pointer;
+}
+
+.time-slots .slot{
+  background-color: #e0f7fa;
+  border: 1px solid #b2ebf2;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.slot.selected{
+  background-color: #00bcd4;
+  color: white;
+}
