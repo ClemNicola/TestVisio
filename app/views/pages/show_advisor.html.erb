@@ -58,12 +58,12 @@
                 <!-- step two -->
                 <div class="step">
                     <p class="text-md text-gray-700 leading-tight text-center mt-8 mb-5">Select your date</p>
-                    <div class="calendar">
+                    <div class="calendar" id="calendar" data-advisor-id="<%=@advisor.id%>">
 
                       <button class="prev-week">←</button>
                       <button class="next-week">→</button>
 
-                      <div id="week-day" class="week-days">
+                      <div id="week-days" class="week-days">
                       </div>
 
                       <div id="time-slotes" class="time-slotes">
@@ -111,3 +111,4 @@
   </div>
 </div>
 <%= javascript_import_module_tag "script" %>
+<%= javascript_import_module_tag "calendar" %>

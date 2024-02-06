@@ -1,11 +1,11 @@
 class AvailabilitiesController < ApplicationController
   before_action :authenticate_advisor!
   before_action :set_availability, only: %i[edit update]
-  before_action :set_advisor, only: %i[index new create]
+  before_action :set_advisor, only: %i[index show new create edit]
 
   def index
     @availabilities = @advisor.availabilities
-    render json: @advisor.availabilities
+    render json: @availabilities
   end
 
   def show
@@ -41,7 +41,7 @@ class AvailabilitiesController < ApplicationController
   private
 
   def set_advisor
-    @advisor = current_advisor
+    @advisor = Advisor.find(params[:advisor_id])
   end
 
   def set_availability
