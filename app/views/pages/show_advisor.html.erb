@@ -104,18 +104,20 @@
 
                         </div>
 
-                        <div id="time-slotes" class="time-slotes">
+                        <div id="time-slots" class="time-slots ">
                           <ul>
                             <% @advisor.availabilities.each do |availability| %>
-                            <li>
-                              <input type="checkbox" name="advisor-hours" id="advisor_hours_<%=availability.id%>" value= "<%=availability.id%>">
-                              <label advisor_hours_<%=availability.id%>>
-                                <div class="block">
-                                    <div class="w-full text-lg font-semibold"><%= availability.start_time.strftime('%H:%M') %></div>
-                                    <div class="w-full text-gray-500 dark:text-gray-400"><%= availability.end_time.strftime('%H:%M') %></div>
-                                </div>
-                              </label>
-                            </li>
+                              <% availability.time_slots.each do |slot| %>
+                                  <li>
+                                    <input class="advisor-hours" type="checkbox" name="advisor-hours" id="advisor_hours_<%=slot.strftime('%H:%M')%>" value= "<%=slot.strftime('%H:%M')%>">
+                                    <label for="advisor_hours_<%=slot.strftime('%H:%M')%>">
+                                      <div class="block">
+                                          <div class="time w-full"><%= slot.strftime('%H:%M') %></div>
+
+                                      </div>
+                                    </label>
+                                  </li>
+                              <% end %>
                             <% end  %>
                           </ul>
                         </div>

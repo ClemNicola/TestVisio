@@ -24,7 +24,20 @@ class Availability < ApplicationRecord
     day_of_week = date.strftime('%A').downcase
     self[day_of_week]
   end
-  
+
+  def time_slots
+    slots = []
+    current_time = start_time
+
+    while current_time < end_time
+      slots << current_time
+      current_time += 30.minutes
+    end
+
+    slots
+  end
+
+
   private
 
   def set_default_times
