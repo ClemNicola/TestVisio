@@ -1,3 +1,21 @@
-<%# <%= turbo_stream.replace "form_modal" do %>
-  <%# <%= render "pages/form_modal", appointment: @appointment, advisor: @advisor %> 
-<%# <% end %>
+New Appointement
+
+<h2><%= current_user.first_name %> souhaite prendre rendez-vous avec <%= @advisor.first_name %></h2>
+
+
+<% @advisor.appointment_types.each do |appointment_type| %>
+  <%= appointment_type.name %>
+  <%= appointment_type.duration %> min
+<% end %>
+<br>
+<br>
+
+<% @advisor.availabilities.each do |availability| %>
+  <ul>
+    <li>Monday <%= availability.monday %> - <%= availability.start_time %> - <%= availability.end_time %></li>
+    <li>Tuesday <%= availability.tuesday %> - <%= availability.start_time %> - <%= availability.end_time %></li>
+    <li>Wednesday <%= availability.wednesday %> - <%= availability.start_time %> - <%= availability.end_time %></li>
+    <li>Thursday <%= availability.thursday %> - <%= availability.start_time %> - <%= availability.end_time %></li>
+    <li>Friday <%= availability.friday %> - <%= availability.start_time %> - <%= availability.end_time %></li>
+  </ul>
+<% end %>

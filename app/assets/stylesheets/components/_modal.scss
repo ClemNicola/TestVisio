@@ -69,13 +69,15 @@
   color: rgb(104, 147, 245);
 }
 
-.week-day{
+.week-days{
   display: flex;
   justify-content: space-between;
-  padding: 5px;
+  padding-inline: 7px;
+  background-color: #a3bffa;
+  border-radius: 4px;
 }
 
-.week-day .day{
+.week-days .day{
   flex-grow: 1;
   text-align: center;
   cursor: pointer;
@@ -92,4 +94,32 @@
 .slot.selected{
   background-color: #00bcd4;
   color: white;
+}
+
+.boutton-fleche{
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 10px;
+}
+
+.day-pick{
+  margin-top: 0.5rem;
+  margin-bottom:0.5rem;
+  color: white;
+}
+
+.day-selector{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .date{
+    color: rgb(12, 11, 82);
+    margin-bottom: none;
+    font-size: 0.8rem;
+  }
+}
+
+.calendar{
+  margin-bottom: 3vh;
 }

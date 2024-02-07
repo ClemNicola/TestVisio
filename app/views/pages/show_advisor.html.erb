@@ -10,7 +10,7 @@
   </div>
 
   <%# <%= link_to "Make an appointment", new_advisor_appointment_path(advisor_id: @advisor.id) %>
-
+  <%= link_to 'New Appointment Test', new_advisor_appointment_path(@advisor) %>
   <button data-modal-target="select-modal" data-modal-toggle="select-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
       Make An Appointment
   </button>
@@ -60,14 +60,52 @@
                     <p class="text-md text-gray-700 leading-tight text-center mt-8 mb-5">Select your date</p>
                     <div class="calendar" id="calendar" data-advisor-id="<%=@advisor.id%>">
 
-                      <button class="prev-week">←</button>
-                      <button class="next-week">→</button>
-
-                      <div id="week-days" class="week-days">
+                      <div class="boutton-fleche">
+                        <button class="prev-week">←</button>
+                        <button class="next-week">→</button>
                       </div>
 
-                      <div id="time-slotes" class="time-slotes">
-                      </div>
+                        <div id="week-days" class="week-days">
+
+                          <div class="day-selector">
+                            <p class = "day-pick" > Monday </p>
+                            <p class = "date"></p>
+                          </div>
+
+                          <div class="day-selector">
+                            <p class = "day-pick"> Tuesday</p>
+                            <p class = "date"></p>
+                          </div>
+
+                          <div class="day-selector">
+                            <p class = "day-pick" > Wednesday </p>
+                            <p class = "date"></p>
+                          </div>
+
+                          <div class="day-selector">
+                            <p class = "day-pick" > Thursday</p>
+                            <p class = "date"></p>
+                          </div>
+
+                          <div class="day-selector">
+                            <p class = "day-pick" > Friday</p>
+                            <p class = "date"></p>
+                          </div>
+
+                          <div class="day-selector">
+                            <p class = "day-pick" > Saturday</p>
+                            <p class = "date"></p>
+                          </div>
+
+                          <div class="day-selector">
+                            <p class = "day-pick" > Sunday</p>
+                            <p class = "date"></p>
+                          </div>
+
+                        </div>
+
+                        <div id="time-slotes" class="time-slotes">
+                        </div>
                     </div>
                     <%# <div class="mb-6">
                         <input type="date" placeholder="01/01/2024" name="date"
