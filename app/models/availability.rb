@@ -25,16 +25,39 @@ class Availability < ApplicationRecord
     self[day_of_week]
   end
 
-  def time_slots
-    slots = []
-    current_time = start_time
+  def time_slots_day(date)
+    all_slots = []
+    advisor_availabilities = Availability.where(advisor_id: self.advisor_id)
 
-    while current_time < end_time
-      slots << current_time
-      current_time += 30.minutes
+    day_availabilities = advisor_availabilities.select{ |availability| availability.covers_day?(date)}
+
+    start_day = day_availabilities.map(&:start_time).min
+    end_day = day_availabilities.map(&:end_time).max
+
+    if start_day && end_day
+      current_time = start_day
+
+      while current_time < end_day
+        slots_covered = day_availabilities.any? do |availability|
+          availability.covers_day?(date) && current_time >= availability.start_time && current_time < availability.end_time
+        end
+        all_slots << (slots_covered ? current_time.strftime('%H:%M') : "none")
+
+        current_time += 30.minutes
+      end
     end
-    slots
+    all_slots
   end
+  # def time_slots
+  #   slots = []
+  #   current_time = start_time
+
+  #   while current_time < end_time
+  #     slots << current_time
+  #     current_time += 30.minutes
+  #   end
+  #   slots
+  # end
 
 
   private

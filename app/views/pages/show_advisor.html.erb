@@ -70,21 +70,20 @@
                               </div>
                               <ul class="time-slots">
                                 <% @advisor.availabilities.each do |availability| %>
-                                  <% if availability.covers_day?(date)%>
-                                    <% availability.time_slots.each do |slot| %>
-                                      <li>
-                                        <input class="advisor-hours" type="radio" name="advisor-hours" id="advisor_hours_<%= slot.strftime('%H:%M') %>_<%= date.strftime('%Y-%m-%d') %>" value="<%= slot.strftime('%H:%M') %>">
-                                        <label for="advisor_hours_<%= slot.strftime('%H:%M') %>_<%= date.strftime('%Y-%m-%d') %>">
+                                  <% availability.time_slots_day(date).each do |slot| %>
+                                    <li>
+                                      <% if slot != "-" %>
+                                        <input class="advisor-hours" type="radio" name="advisor-hours" id="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>" value="<%= slot %>">
+                                        <label for="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>">
                                           <div class="block">
-                                            <div class="time w-full"><%= slot.strftime('%H:%M') %></div>
+                                            <div class="time w-full"><%= slot %></div>
                                           </div>
                                         </label>
-                                      </li>
-                                    <% end %>
-                                  <% else %>
-                                    <li>
-                                      <input class="advisor-hours" type="radio" name="advisor-hours_unavailable" id="advisor_hours_unavailable_<%= slot.strftime('%H:%M') %>_<%= date.strftime('%Y-%m-%d') %>" value="-" disabled>
-                                      <label for="advisor_hours_unavailable_<%= slot.strftime('%H:%M') %>_<%= date.strftime('%Y-%m-%d') %>"> - </label>
+                                      <% else %>
+                                        <div class="block">
+                                          <div class="time w-full">-</div>
+                                        </div>
+                                      <% end %>
                                     </li>
                                   <% end %>
                                 <% end %>
@@ -134,6 +133,6 @@
           </div>
       </div>
   </div>
-</div>
-<%= javascript_import_module_tag "script" %>
+
+  <%= javascript_import_module_tag "script" %>
 <%# <%= javascript_import_module_tag "calendar" %>
