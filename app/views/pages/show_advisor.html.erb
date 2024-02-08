@@ -66,41 +66,12 @@
                       </div>
 
                         <div id="week-days" class="week-days">
-
-                          <div class="day-selector">
-                            <p class = "day-pick" > Monday </p>
-                            <p class = "date">07 Fevrier</p>
-                          </div>
-
-                          <div class="day-selector">
-                            <p class = "day-pick"> Tuesday</p>
-                            <p class = "date"></p>
-                          </div>
-
-                          <div class="day-selector">
-                            <p class = "day-pick" > Wednesday </p>
-                            <p class = "date"></p>
-                          </div>
-
-                          <div class="day-selector">
-                            <p class = "day-pick" > Thursday</p>
-                            <p class = "date"></p>
-                          </div>
-
-                          <div class="day-selector">
-                            <p class = "day-pick" > Friday</p>
-                            <p class = "date"></p>
-                          </div>
-
-                          <div class="day-selector">
-                            <p class = "day-pick" > Saturday</p>
-                            <p class = "date"></p>
-                          </div>
-
-                          <div class="day-selector">
-                            <p class = "day-pick" > Sunday</p>
-                            <p class = "date"></p>
-                          </div>
+                          <% @week_dates.each do |day_name, date| %>
+                            <div class="day-selector">
+                              <p class = "day-pick" > <%= day_name %> </p>
+                              <p class = "date"> <%= date.strftime('%d-%b') %></p>
+                            </div>
+                          <% end %>
 
                         </div>
 

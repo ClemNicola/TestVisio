@@ -4,8 +4,8 @@ class AvailabilitiesController < ApplicationController
   before_action :set_advisor, only: %i[index show new create edit]
 
   def index
+
     @availabilities = @advisor.availabilities
-    render json: @availabilities
   end
 
   def show

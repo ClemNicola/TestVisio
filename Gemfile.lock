@@ -313,6 +313,7 @@ DEPENDENCIES
   bootsnap
   bootstrap (~> 5.2)
   capybara
+  date
   debug
   devise
   dotenv-rails
