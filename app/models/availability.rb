@@ -33,7 +33,6 @@ class Availability < ApplicationRecord
       slots << current_time
       current_time += 30.minutes
     end
-
     slots
   end
 

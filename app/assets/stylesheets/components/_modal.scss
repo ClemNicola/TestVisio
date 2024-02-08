@@ -69,23 +69,20 @@
   color: rgb(104, 147, 245);
 }
 
-.week-days{
+.calendar{
+  background-color: #c3bdff;
+  padding: 0px 10px;
+  margin: 0px 5px;
+  border-radius: 15px
+}
+.date-info{
   padding-inline: 7px;
-  background-color: #a3bffa;
-  border-radius: 4px;
-  margin-inline: 5px;
+  text-align: center;
 }
 
 .days-container{
   display: flex;
-  flex-grow: 1;
   justify-content: space-evenly;
-}
-
-.boutton-fleche{
-  display: flex;
-  justify-content: space-between;
-  padding-inline: 10px;
 }
 
 .day-pick{

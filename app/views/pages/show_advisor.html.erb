@@ -57,43 +57,42 @@
 
                 <!-- step two -->
                 <div class="step">
-                    <p class="text-md text-gray-700 leading-tight text-center mt-8 mb-5">Select your date</p>
+                    <p class="text-md text-gray-700 leading-tight text-center mt-8 mb-2">Select your date</p>
                     <div class="calendar" id="calendar">
 
-
-                        <div id="week-days" class="week-days">
-                          <div class="boutton-fleche">
-                            <button class="prev-week">←</button>
-                            <div class="days-container">
-                              <% @week_dates.each do |day_name, date| %>
-                                <div class="day-selector">
-                                  <p class = "day-pick" > <%= day_name %> </p>
-                                  <p class = "date"> <%= date.strftime('%d-%b') %></p>
-                                </div>
-                              <% end %>
+                       <div class="week-days-container">
+                        <div class="days-container">
+                          <% @week_dates.each do |day_name, date| %>
+                            <div class="day-selector">
+                              <div class="date-info">
+                                <p class="day-pick"><%= day_name %></p>
+                                <p class="date"><%= date.strftime('%d-%b') %></p>
+                              </div>
+                              <ul class="time-slots">
+                                <% @advisor.availabilities.each do |availability| %>
+                                  <% if availability.covers_day?(date)%>
+                                    <% availability.time_slots.each do |slot| %>
+                                      <li>
+                                        <input class="advisor-hours" type="radio" name="advisor-hours" id="advisor_hours_<%= slot.strftime('%H:%M') %>_<%= date.strftime('%Y-%m-%d') %>" value="<%= slot.strftime('%H:%M') %>">
+                                        <label for="advisor_hours_<%= slot.strftime('%H:%M') %>_<%= date.strftime('%Y-%m-%d') %>">
+                                          <div class="block">
+                                            <div class="time w-full"><%= slot.strftime('%H:%M') %></div>
+                                          </div>
+                                        </label>
+                                      </li>
+                                    <% end %>
+                                  <% else %>
+                                    <li>
+                                      <input class="advisor-hours" type="radio" name="advisor-hours_unavailable" id="advisor_hours_unavailable_<%= slot.strftime('%H:%M') %>_<%= date.strftime('%Y-%m-%d') %>" value="-" disabled>
+                                      <label for="advisor_hours_unavailable_<%= slot.strftime('%H:%M') %>_<%= date.strftime('%Y-%m-%d') %>"> - </label>
+                                    </li>
+                                  <% end %>
+                                <% end %>
+                              </ul>
                             </div>
-                            <button class="next-week">→</button>
-                          </div>
-
+                          <% end %>
                         </div>
-
-                        <div id="time-slots" class="time-slots ">
-                          <ul>
-                            <% @advisor.availabilities.each do |availability| %>
-                              <% availability.time_slots.each do |slot| %>
-                                  <li>
-                                    <input class="advisor-hours" type="radio" name="advisor-hours" id="advisor_hours_<%=slot.strftime('%H:%M')%>" value= "<%=slot.strftime('%H:%M')%>">
-                                    <label for="advisor_hours_<%=slot.strftime('%H:%M')%>">
-                                      <div class="block">
-                                          <div class="time w-full"><%= slot.strftime('%H:%M') %></div>
-
-                                      </div>
-                                    </label>
-                                  </li>
-                              <% end %>
-                            <% end  %>
-                          </ul>
-                        </div>
+                      </div>
                     </div>
                     <%# <div class="mb-6">
                         <input type="date" placeholder="01/01/2024" name="date"
