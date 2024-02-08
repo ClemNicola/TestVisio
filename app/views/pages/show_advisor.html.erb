@@ -69,7 +69,7 @@
 
                           <div class="day-selector">
                             <p class = "day-pick" > Monday </p>
-                            <p class = "date"></p>
+                            <p class = "date">07 Fevrier</p>
                           </div>
 
                           <div class="day-selector">
@@ -109,7 +109,7 @@
                             <% @advisor.availabilities.each do |availability| %>
                               <% availability.time_slots.each do |slot| %>
                                   <li>
-                                    <input class="advisor-hours" type="checkbox" name="advisor-hours" id="advisor_hours_<%=slot.strftime('%H:%M')%>" value= "<%=slot.strftime('%H:%M')%>">
+                                    <input class="advisor-hours" type="radio" name="advisor-hours" id="advisor_hours_<%=slot.strftime('%H:%M')%>" value= "<%=slot.strftime('%H:%M')%>">
                                     <label for="advisor_hours_<%=slot.strftime('%H:%M')%>">
                                       <div class="block">
                                           <div class="time w-full"><%= slot.strftime('%H:%M') %></div>
