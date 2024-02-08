@@ -70,31 +70,16 @@
 }
 
 .week-days{
-  display: flex;
-  justify-content: space-between;
   padding-inline: 7px;
   background-color: #a3bffa;
   border-radius: 4px;
   margin-inline: 5px;
 }
 
-.week-days .day{
+.days-container{
+  display: flex;
   flex-grow: 1;
-  text-align: center;
-  cursor: pointer;
-}
-
-.time-slots .slot{
-  background-color: #e0f7fa;
-  border: 1px solid #b2ebf2;
-  padding: 5px 10px;
-  margin: 5px;
-  cursor: pointer;
-}
-
-.slot.selected{
-  background-color: #00bcd4;
-  color: white;
+  justify-content: space-evenly;
 }
 
 .boutton-fleche{
@@ -120,6 +105,20 @@
     font-size: 0.8rem;
   }
 }
+
+.time-slots .slot{
+  background-color: #e0f7fa;
+  border: 1px solid #b2ebf2;
+  padding: 5px 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.slot.selected{
+  background-color: #00bcd4;
+  color: white;
+}
+
 
 .calendar{
   margin-bottom: 3vh;

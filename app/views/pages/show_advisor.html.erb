@@ -60,18 +60,20 @@
                     <p class="text-md text-gray-700 leading-tight text-center mt-8 mb-5">Select your date</p>
                     <div class="calendar" id="calendar">
 
-                      <div class="boutton-fleche">
-                        <button class="prev-week">←</button>
-                        <button class="next-week">→</button>
-                      </div>
 
                         <div id="week-days" class="week-days">
-                          <% @week_dates.each do |day_name, date| %>
-                            <div class="day-selector">
-                              <p class = "day-pick" > <%= day_name %> </p>
-                              <p class = "date"> <%= date.strftime('%d-%b') %></p>
+                          <div class="boutton-fleche">
+                            <button class="prev-week">←</button>
+                            <div class="days-container">
+                              <% @week_dates.each do |day_name, date| %>
+                                <div class="day-selector">
+                                  <p class = "day-pick" > <%= day_name %> </p>
+                                  <p class = "date"> <%= date.strftime('%d-%b') %></p>
+                                </div>
+                              <% end %>
                             </div>
-                          <% end %>
+                            <button class="next-week">→</button>
+                          </div>
 
                         </div>
 
