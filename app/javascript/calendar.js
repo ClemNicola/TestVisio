@@ -1,28 +1,27 @@
 const show = document.querySelector('.voir-moins')
 const arrow = document.querySelector('.fleche')
 const hours = document.querySelectorAll('.time')
+const columns = document.querySelectorAll('.day-selector')
 // const noneHours = document.querySelectorAll('.none-advisor-hours')
 
 let isReduce = false;
 
 
 function showLess() {
-  const allHours = [...hours];
 
-  const halfHours = Math.ceil(allHours.length / 2);
 
-  if (!isReduce){
-    for(let i = 0; i < halfHours; i ++){
-      allHours[i].style.display = "none";
-    }
-    show.textContent = 'Voir plus';
-    arrow.style.transform = "rotate(90deg)"
-    isReduce = true;
-  }else{
-    allHours.forEach(element => element.style.display = "");
-    isReduced = false
+  columns.forEach(column =>{
+    const hours = column.querySelectorAll('.time');
+    const timeToggle = Array.from(hours).slice(10);
 
-  }
+    timeToggle.forEach(time => {
+      time.style.display = isReduce ? "" : "none";
+    });
+  });
+
+  show.textContent = isReduce ? 'Voir moins' : 'Voir plus';
+  arrow.style.transform = isReduce ? "rotate(90deg)" : "rotate(0deg)";
+  isReduce = !isReduce;
 
 }
 
