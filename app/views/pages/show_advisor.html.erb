@@ -72,7 +72,7 @@
                                 <% @advisor.availabilities.each do |availability| %>
                                   <% availability.time_slots_day(date).each do |slot| %>
                                     <li>
-                                      <% if slot != "-" %>
+                                      <% if slot != "none" %>
                                         <input class="advisor-hours" type="radio" name="advisor-hours" id="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>" value="<%= slot %>">
                                         <label for="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>">
                                           <div class="block">
@@ -81,7 +81,7 @@
                                         </label>
                                       <% else %>
                                         <div class="block">
-                                          <div class="time w-full">-</div>
+                                          <div class="time w-full">none</div>
                                         </div>
                                       <% end %>
                                     </li>

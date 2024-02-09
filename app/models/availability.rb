@@ -26,22 +26,27 @@ class Availability < ApplicationRecord
   end
 
   def time_slots_day(date)
+
     all_slots = []
     advisor_availabilities = Availability.where(advisor_id: self.advisor_id)
 
-    day_availabilities = advisor_availabilities.select{ |availability| availability.covers_day?(date)}
+    day_availabilities = advisor_availabilities.select{ |availability| availability.covers_day?(date) }
 
-    start_day = day_availabilities.map(&:start_time).min
-    end_day = day_availabilities.map(&:end_time).max
+    if day_availabilities.empty?
+      typical_start = advisor_availabilities.map(&:start_time).min 
+      typical_end = advisor_availabilities.map(&:end_time).max
 
-    if start_day && end_day
+      num_slots = ((typical_end - typical_start) / 30.minutes).to_i
+
+      num_slots.times{ all_slots << "none" }
+    else
+      start_day = day_availabilities.map(&:start_time).min
+      end_day = day_availabilities.map(&:end_time).max
+
       current_time = start_day
-
       while current_time < end_day
-        slots_covered = day_availabilities.any? do |availability|
-          availability.covers_day?(date) && current_time >= availability.start_time && current_time < availability.end_time
-        end
-        all_slots << (slots_covered ? current_time.strftime('%H:%M') : "none")
+        # Ajout du créneau horaire au format HH:MM
+        all_slots << current_time.strftime('%H:%M')
 
         current_time += 30.minutes
       end
