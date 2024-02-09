@@ -71,8 +71,8 @@
 
 .calendar{
   background-color: #c3bdff;
-  padding: 0px 10px;
-  margin: 0px 5px;
+  // padding: 0px 10px;
+  margin: 10px 5px;
   border-radius: 15px
 }
 .date-info{
@@ -116,11 +116,6 @@
   color: white;
 }
 
-
-.calendar{
-  margin-bottom: 3vh;
-}
-
 .time-slots{
   margin-top: 0.5rem
 }
@@ -134,9 +129,9 @@
   cursor: pointer;
   border-radius: 50rem;
   padding: 0.1rem 0.5rem;
-  background-color: #ECEAFF;
+  background-color: #f7f6ff;
   color: #7E73FF;
-  border: 1px solid #7E73FF;
+  border: 1px solid #9a90ff;
   margin-right: 0.6rem;
   margin-bottom: 0.4rem;
 }
@@ -152,4 +147,41 @@
 
 ul{
   padding-left: 0.5rem
+}
+
+.none-advisor-hours{
+  position: absolute;
+  transform: scale(0);
+}
+
+.none-advisor-hours + label {
+  border-radius: 50rem;
+  padding: 0.1rem 1.1rem;
+  background-color: #dedce8;
+  color: #7E73FF;
+  border: 1px solid #7E73FF;
+  margin-right: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.voir-moins{
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: #382363d9;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+
+  #voir-moins{
+    margin: 0 1rem;
+    color:white
+  }
+}
+
+.fleche {
+  color: white;
+  transform:rotate(-90deg);
+  font-size: 0.9rem
 }

@@ -80,9 +80,12 @@
                                           </div>
                                         </label>
                                       <% else %>
-                                        <div class="block">
-                                          <div class="time w-full">none</div>
-                                        </div>
+                                        <input class="none-advisor-hours" type="radio" name="advisor-hours" id="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>" value="<%= slot %>" disabled>
+                                        <label for="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>">
+                                          <div class="block">
+                                            <div class="time w-full">-</div>
+                                          </div>
+                                        </label>
                                       <% end %>
                                     </li>
                                   <% end %>
@@ -91,6 +94,10 @@
                             </div>
                           <% end %>
                         </div>
+                      </div>
+                      <div class="voir-moins">
+                        <p id="voir-moins">Voir moins</p>
+                        <i class="fleche fa-solid fa-greater-than"></i>
                       </div>
                     </div>
                     <%# <div class="mb-6">
@@ -135,4 +142,4 @@
   </div>
 
   <%= javascript_import_module_tag "script" %>
-<%# <%= javascript_import_module_tag "calendar" %>
+  <%= javascript_import_module_tag "calendar" %>
