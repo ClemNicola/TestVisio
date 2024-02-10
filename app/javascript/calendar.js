@@ -1,9 +1,9 @@
-const show = document.querySelector('.voir-moins')
+const show = document.querySelector('#voir-moins')
 const arrow = document.querySelector('.fleche')
 const columns = document.querySelectorAll('.day-selector')
 // const noneHours = document.querySelectorAll('.none-advisor-hours')
 
-let isReduce = false;
+let isReduce = true;
 
 
 function showLess() {
@@ -11,31 +11,20 @@ function showLess() {
 
   columns.forEach(column =>{
 
-    const hours = column.querySelectorAll('.time');
-    const inputs = document.querySelectorAll('input')
-    const labels = document.querySelectorAll('label')
+    const slots = column.querySelectorAll('li');
+    const slotsToggle = Array.from(slots).slice(10);
 
-    const timeToggle = Array.from(hours).slice(10);
-    const inputToggle = Array.from(inputs).slice(10);
-    const labelToggle = Array.from(labels).slice(10);
-
-    timeToggle.forEach(time => {
-      time.style.display = isReduce ? "" : "none";
+    slotsToggle.forEach(slot => {
+      slot.style.display = isReduce ? "none" : "";
     });
 
-    inputToggle.forEach(input => {
-      input.style.display = isReduce ? "" : "none";
-    });
-
-    labelToggle.forEach(label => {
-      label.style.display = isReduce ? "" : "none";
-    });
   });
 
-  show.textContent = isReduce ? 'Voir moins' : 'Voir plus';
-  arrow.style.transform = isReduce ? "rotate(90deg)" : "rotate(0deg)";
+  show.textContent = isReduce ? 'Voir plus' : 'Voir moins';
+  arrow.style.transform = isReduce ? "rotate(90deg)" : "rotate(-90deg)";
   isReduce = !isReduce;
 
 }
 
-show.addEventListener('click', showLess)
+document.addEventListener('DOMContentLoaded', showLess);
+show.addEventListener('click', showLess);

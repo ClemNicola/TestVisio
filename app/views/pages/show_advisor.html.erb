@@ -74,14 +74,14 @@
                                     <li>
                                       <% if slot != "none" %>
                                         <input class="advisor-hours" type="radio" name="advisor-hours" id="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>" value="<%= slot %>">
-                                        <label for="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>">
+                                        <label class="hour-slot" for="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>">
                                           <div class="block">
                                             <div class="time w-full"><%= slot %></div>
                                           </div>
                                         </label>
                                       <% else %>
                                         <input class="none-advisor-hours" type="radio" name="advisor-hours" id="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>" value="<%= slot %>" disabled>
-                                        <label for="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>">
+                                        <label class = "hour-slot" for="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>">
                                           <div class="block">
                                             <div class="time w-full">-</div>
                                           </div>
