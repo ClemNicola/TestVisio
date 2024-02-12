@@ -185,3 +185,27 @@ ul{
   transform:rotate(-90deg);
   font-size: 0.9rem
 }
+
+.arrow{
+  padding-top: 2rem;
+  padding-inline: 0.4rem;
+  color: #59387d;
+  cursor: pointer
+}
+
+.recap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.recap{
+  margin-block: 1rem;
+  font-weight: bold;
+}
+
+.infos-recap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

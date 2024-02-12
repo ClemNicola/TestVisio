@@ -62,6 +62,7 @@
 
                        <div class="week-days-container">
                         <div class="days-container">
+                          <i class="arrow fa-solid fa-arrow-left" id="left"></i>
                           <% @week_dates.each do |day_name, date| %>
                             <div class="day-selector">
                               <div class="date-info">
@@ -73,7 +74,7 @@
                                   <% availability.time_slots_day(date).each do |slot| %>
                                     <li>
                                       <% if slot != "none" %>
-                                        <input class="advisor-hours" type="radio" name="advisor-hours" id="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>" value="<%= slot %>">
+                                        <input type="radio" name="advisor-hours" id="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>" value="<%= slot %>"  class="advisor-hours">
                                         <label class="hour-slot" for="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>">
                                           <div class="block">
                                             <div class="time w-full"><%= slot %></div>
@@ -93,6 +94,7 @@
                               </ul>
                             </div>
                           <% end %>
+                          <i class="arrow fa-solid fa-arrow-right" id="right"></i>
                         </div>
                       </div>
                       <div class="voir-moins">
@@ -112,19 +114,25 @@
 
                 <!-- step three -->
                 <div class="step">
-                    <p class="text-md text-gray-700 leading-tight text-center mt-8 mb-5">Your Recap</p>
-                    <div class="mb-6">
-                      <input type="text" placeholder="Full name" name="fullname"
+                  <p class="recap text-md text-gray-700 leading-tight text-center">Your Recap</p>
+                  <div class="infos-recap">
+                    <p id="appointment-type"></p>
+                    <p id="rdv"></p>
+                  </div>
+                  <div class="recap">
+                    <div class=" mb-6">
+                      <input type="text" placeholder="First name" name="firstname"
                             class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" oninput="this.className = 'w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200'" />
                     </div>
-                    <div class="mb-6">
+                    <div class=" mb-6">
+                      <input type="text" placeholder="Last name" name="lastname"
+                            class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" oninput="this.className = 'w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200'" />
+                    </div>
+                    <div class=" mb-6">
                       <input type="text" placeholder="Mobile" name="mobile"
                             class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" oninput="this.className = 'w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200'" />
                     </div>
-                    <div class="mb-6">
-                      <input type="text" placeholder="Address" name="address"
-                            class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" oninput="this.className = 'w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200'" />
-                    </div>
+                  </div>
                 </div>
 
                 <!-- start previous / next buttons -->
@@ -143,3 +151,4 @@
 
   <%= javascript_import_module_tag "script" %>
   <%= javascript_import_module_tag "calendar" %>
+  <%= javascript_import_module_tag "recap" %>
