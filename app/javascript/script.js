@@ -33,7 +33,7 @@ var currentTab = 0; // Current tab is set to be the first tab (0)
           // if you have reached the end of the form...
           if (currentTab >= x.length) {
             // ... the form gets submitted:
-            document.getElementById("signUpForm").submit();
+            document.getElementById("appointmentForm").submit();
             return false;
           }
           // Otherwise, display the correct tab:
