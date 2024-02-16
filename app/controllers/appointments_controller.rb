@@ -12,11 +12,19 @@ class AppointmentsController < ApplicationController
 
   def new
     @appointment = Appointment.new
+    @week_dates = week_dates
+    @appointment_types = @advisor.appointment_types
+    # @appointment_types = AppointmentType.where(advisor_id: @advisor.id)
+    @availabilities = @advisor.availabilities
+    @appointment.user = current_user
   end
 
   def create
     @appointment = @advisor.appointments.new(appointment_params)
     @appointment.user = current_user
+    # appointment_date = params[:appointment][:date]
+    # appointment_time = params[:appointment][:time]
+    # appointment_type_id = params[:appointment][:appointment_type_id]
 
     if @appointment.save
       redirect_to root_path, notice: 'Appointment was successfully created'
@@ -35,6 +43,14 @@ class AppointmentsController < ApplicationController
   end
 
   private
+
+  def week_dates
+    today = Date.today
+    start_of_week = today.beginning_of_week(:monday)
+    (start_of_week..start_of_week + 6.days).map do |date|
+      [date.strftime('%A'), date]
+    end
+  end
 
   def set_advisor
     @advisor = Advisor.find(params[:advisor_id])

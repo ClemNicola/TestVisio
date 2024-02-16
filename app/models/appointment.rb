@@ -9,7 +9,7 @@ class Appointment < ApplicationRecord
   enum status: { pending: 0, approved: 1, unapproved: 2 }
 
   def check_availability
-    unless advisor.available_on?(date, time)
+    unless advisor.available_on?(date, time, appointment_type_id)
       errors.add(:base, "Advisor is not available on the selected date and time")
     end
   end

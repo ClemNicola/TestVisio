@@ -6,6 +6,7 @@ class Advisor < ApplicationRecord
   has_many :users, through: :appointments
   has_many :availabilities, dependent: :destroy
   has_many :appointment_types, dependent: :destroy
+  has_many :appointments
 
   validates :bio, presence: true
   validates :speciality, presence: true, inclusion: { in: ['Finance Verte', 'Retraite', 'Optimisation fiscale'] }
@@ -14,13 +15,14 @@ class Advisor < ApplicationRecord
   validates :last_name, presence: true
   validates :password, presence:true
 
-  def available_on?(appointment_date, appointment_time, appointment_type_id)
+  def available_on?(date, time, appointment_type_id)
 
     appointment_duration = AppointmentType.find(appointment_type_id).duration
-    appointment_end_time = appointment_time + appointment_duration.minutes
+    parsed_time = Time.parse("#{date} #{time}")
+    appointment_end_time = parsed_time + appointment_duration.minutes
 
     availabilities.any? do |availability|
-      availability.covers_day?(appointment_date) && time_within_availability?(availability, appointment_time, appointment_end_time)
+      availability.covers_day?(date) && time_within_availability?(availability, parsed_time, appointment_end_time)
     end
   end
 

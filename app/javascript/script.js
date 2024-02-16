@@ -1,78 +1,75 @@
-var currentTab = 0; // Current tab is set to be the first tab (0)
-        showTab(currentTab); // Display the current tab
-        const next = document.getElementById('nextBtn');
-        const prev = document.getElementById('prevBtn');
-        function showTab(n) {
-          // This function will display the specified tab of the form...
-          var x = document.getElementsByClassName("step");
-          x[n].style.display = "block";
-          //... and fix the Previous/Next buttons:
-          if (n == 0) {
-            document.getElementById("prevBtn").style.display = "none";
-          } else {
-            document.getElementById("prevBtn").style.display = "inline";
-          }
-          if (n == (x.length - 1)) {
-            document.getElementById("nextBtn").innerHTML = "Submit";
-          } else {
-            document.getElementById("nextBtn").innerHTML = "Next";
-          }
-          //... and run a function that will display the correct step indicator:
-          fixStepIndicator(n)
-        }
+document.addEventListener('DOMContentLoaded', (event) => {
+  let currentTab = 0; // Initialise l'onglet actuel à 0
+  showTab(currentTab); // Affiche l'onglet actuel
 
-        function nextPrev(n) {
-          // This function will figure out which tab to display
-          var x = document.getElementsByClassName("step");
-          // Exit the function if any field in the current tab is invalid:
-          if (n == 1 && !validateForm()) return false;
-          // Hide the current tab:
-          x[currentTab].style.display = "none";
-          // Increase or decrease the current tab by 1:
-          currentTab = currentTab + n;
-          // if you have reached the end of the form...
-          if (currentTab >= x.length) {
-            // ... the form gets submitted:
-            document.getElementById("appointmentForm").submit();
-            return false;
-          }
-          // Otherwise, display the correct tab:
-          showTab(currentTab);
-        }
+  function showTab(n) {
+    let steps = document.getElementsByClassName('step');
+    for (let i = 0; i < steps.length; i++) {
+      steps[i].style.display = "none";
+    }
+    steps[n].style.display = "block";
 
-        function validateForm() {
-          // This function deals with validation of the form fields
-          var x, y, i, valid = true;
-          x = document.getElementsByClassName("step");
-          y = x[currentTab].getElementsByTagName("input");
-          // A loop that checks every input field in the current tab:
-          for (i = 0; i < y.length; i++) {
-            // If a field is empty...
-            if (y[i].value == "") {
-              // add an "invalid" class to the field:
-              y[i].className += " invalid";
-              // and set the current valid status to false
-              valid = false;
-            }
-          }
-          // If the valid status is true, mark the step as finished and valid:
-          if (valid) {
-            document.getElementsByClassName("stepIndicator")[currentTab].className += " finish";
-          }
-          return valid; // return the valid status
-        }
+    let prev = document.getElementById('prevBtn');
+    let next = document.getElementById('nextBtn');
+    let submit = document.getElementById('submitBtn');
 
-        function fixStepIndicator(n) {
-          // This function removes the "active" class of all steps...
-          var i, x = document.getElementsByClassName("stepIndicator");
-          for (i = 0; i < x.length; i++) {
-            x[i].className = x[i].className.replace(" active", "");
-          }
-          //... and adds the "active" class on the current step:
-          x[n].className += " active";
-        }
-        prev.addEventListener('click', function(){nextPrev(-1); });
-        next.addEventListener('click', function(){nextPrev(1); });
+    prev.style.display = n === 0 ? "none" : "inline";
+    if (n === steps.length - 1) {
+      next.style.display = "none"; // Cache le bouton Next
+      submit.style.display = "inline-block"; // Affiche le bouton Submit
+    } else {
+      next.style.display = "inline-block"; // Affiche le bouton Next
+      submit.style.display = "none"; // Cache le bouton Submit
+    }
+
+    fixStepIndicator(n);
+  }
+
+  function nextPrev(n) {
+    let steps = document.getElementsByClassName('step');
+    if (n == 1 && !validateForm()) return false;
+
+    steps[currentTab].style.display = "none";
+    currentTab += n;
+
+    if (currentTab >= steps.length) currentTab = steps.length - 1;
+
+    showTab(currentTab); // Affiche nouvel onglet
+  }
+
+  function validateForm() {
+    let valid = true;
+    let step = document.getElementsByClassName('step')[currentTab];
+    let inputs = step.getElementsByTagName('input');
+
+    for (let input of inputs) {
+      if (input.value == "") {
+        input.classList.add("invalid"); // Utilise classList.add pour ajouter une classe
+        valid = false;
+      } else {
+        input.classList.remove("invalid"); // Retire la classe "invalid" si le champ est rempli
+      }
+    }
+
+    if (valid) {
+      let stepIndicators = document.getElementsByClassName('stepIndicator');
+      if (stepIndicators[currentTab]) stepIndicators[currentTab].classList.add("finish");
+    }
+
+    return valid;
+  }
+
+  function fixStepIndicator(n) {
+    let stepIndicators = document.getElementsByClassName('stepIndicator');
+    for (let indicator of stepIndicators) {
+      indicator.classList.remove("active"); // Utilise classList.remove pour retirer une classe
+    }
+    if (stepIndicators[n]) stepIndicators[n].classList.add("active");
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => nextPrev(-1));
+  document.getElementById('nextBtn').addEventListener('click', () => nextPrev(1));
+});
 
 // let currentTab = 0;
 // showTab(currentTab);
@@ -81,7 +78,7 @@ var currentTab = 0; // Current tab is set to be the first tab (0)
 // const next = document.getElementById('nextBtn');
 
 // function showTab(n){
-//   const steps = document.getElementsByClassName('step');
+//   let steps = document.getElementsByClassName('step');
 //   steps[n].style.display = 'block';
 //   if (n == 0){
 //     document.getElementById('prevBtn').style.display = "none";

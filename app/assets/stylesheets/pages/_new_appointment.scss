@@ -22,3 +22,13 @@
   display: flex;
   justify-content: center;
 }
+
+.appointment_time {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.col-form-label{
+  display: none;
+}
