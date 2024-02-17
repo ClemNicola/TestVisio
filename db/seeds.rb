@@ -29,9 +29,28 @@ Advisor.create!(
   password: "123456",
   # encrypted_password: "123456",
   bio: 'Je suis un conseiller en gestion de patrimoine expérimenté.',
-  speciality: 'Finance verte',
+  speciality: 'Finance Verte'
 )
 
+Advisor.create!(
+  email: "fab@test.com",
+  first_name: "Fab",
+  last_name: "Darraud",
+  password: "123456",
+  # encrypted_password: "123456",
+  bio: 'Je suis un conseiller en gestion de patrimoine expérimenté.',
+  speciality: 'Finance Verte'
+)
+
+Advisor.create!(
+  email: "greg@test.com",
+  first_name: "Greg",
+  last_name: "Darraud",
+  password: "123456",
+  # encrypted_password: "123456",
+  bio: 'Je suis un conseiller en gestion de patrimoine expérimenté.',
+  speciality: 'Finance Verte'
+)
 puts "Creating Advisor"
 
 # if jean.is_advisor?
