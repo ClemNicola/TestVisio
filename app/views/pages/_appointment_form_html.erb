@@ -1,23 +1,163 @@
-<%# <%= form_with model: @appointment, url: advisor_appointments_path(@advisor), local: true do |form| %>
-   <%# <div class="modal-body">
-      <div class="select-appoint">
-        <%= form.label :appointment_type_id, "Type de Rendez-vous" %>
-        <%# <%= form.collection_select :appointment_type_id, @advisor.appointment_types, :id, :name, prompt: "Sélectionnez un type" %>
-      <%# </div> %>
 
-      <%# <div class="select-appoint"> %>
-        <%# <%= form.label :date, "Quelle date" %>
-        <%# <%= form.date_field :date %>
-      <%# </div> %>
+<h1 class="text-lime-400/100">SHOW de L'ADVISOR</h1>
 
-      <%# <div class="select-appoint"> %>
-        <%# <%= form.label :time, "Quelle heure" %>
-        <%# <%= form.time_field :time %>
-      <%# </div> %>
+<div class="container">
+  <div class="advisor-appoint">
+    <img src="https://source.unsplash.com/random/?portrait" alt="Advisor">
+    <div class="advisor-inf">
+      <h2><%= "#{@advisor.first_name} #{@advisor.last_name}" %></h2>
+      <h4><%= @advisor.bio %></h4>
+    </div>
+  </div>
 
-    <%# </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-       <%= form.submit "Confirmation", class:'btn btn-primary', data: {action: "click->bs-modal#submitEnd"} %>
-    <%# </div> %>
-<%# <% end %> 
+  <%# <%= link_to "Make an appointment", new_advisor_appointment_path(advisor_id: @advisor.id) %>
+  <%= link_to 'New Appointment Test', new_advisor_appointment_path(@advisor) %>
+  <button data-modal-target="select-modal" data-modal-toggle="select-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+      Make An Appointment
+  </button>
+
+  <!-- Main modal -->
+  <div id="select-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="largeur-modal relative p-4 w-full max-w-2xl max-h-full">
+          <!-- Modal content -->
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <!-- Modal header -->
+              <div class="flex items-center justify-evenly p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+                  <div class="form-header flex gap-3 text-xs text-center">
+                    <span class="stepIndicator  flex-1 pb-8 relative">Appointment </span>
+                    <span class="stepIndicator  flex-1 pb-8 relative">Date </span>
+                    <span class="stepIndicator  flex-1 pb-8 relative">Recap</span>
+                  </div>
+                  <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm h-8 w-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="select-modal">
+                      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                      </svg>
+                      <span class="sr-only">Close modal</span>
+                  </button>
+              </div>
+              <!-- Modal body -->
+              <%# <form id="appointmentForm" class="p-12 shadow-md rounded-2xl bg-white mx-auto border-solid border-2 border-gray-100 mb-8" action="#!"> %>
+              <%= form_for(Appointment.new, url: advisor_appointments_path(@advisor), id:"appointmentForm", class:"p-12 shadow-md rounded-2xl bg-white mx-auto border-solid border-2 border-gray-100 mb-8", action:"#!") do |f| %>
+                <%= f.fields_for :appointment do |appointment_fields| %>
+                  <div class="step p-4 md:p-5">
+                      <p class="text-gray-500 dark:text-gray-400 mb-4">Select your appointment type:</p>
+                      <ul class="space-y-4 mb-4">
+                        <% @appointment_types.each do |appointment_type| %>
+                          <li>
+                            <input type="radio" id="appointment_type_<%=appointment_type.id%>" name="appointment_type" value="<%=appointment_type.id%>" class="appointment-radio hidden" >
+                            <label for="appointment_type_<%=appointment_type.id%>" class="appointment-label inline-flex items-center justify-between w-full p-5 text-gray-900 bg-white border border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-500 hover:text-gray-900 hover:bg-gray-100 dark:text-white dark:bg-gray-600 dark:hover:bg-gray-500">
+                                <div class="block">
+                                    <div class="w-full text-lg font-semibold"><%= appointment_type.name %></div>
+                                    <div class="w-full text-gray-500 dark:text-gray-400"><%= appointment_type.duration %> min</div>
+                                </div>
+                                <svg class="w-4 h-4 ms-3 rtl:rotate-180 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/></svg>
+                            </label>
+                          </li>
+                        <% end %>
+                      </ul>
+                  </div>
+
+                  <!-- step two -->
+                  <div class="step">
+                      <p class="text-md text-gray-700 leading-tight text-center mt-8 mb-2">Select your date</p>
+                      <div class="calendar" id="calendar">
+
+                        <div class="week-days-container">
+                          <div class="days-container">
+                            <i class="arrow fa-solid fa-arrow-left" id="left"></i>
+                            <% @week_dates.each do |day_name, date| %>
+                              <div class="day-selector">
+                                <div class="date-info">
+                                  <p class="day-pick"><%= day_name %></p>
+                                  <p class="date"><%= date.strftime('%d-%b') %></p>
+                                </div>
+                                <ul class="time-slots">
+                                  <% @advisor.availabilities.each do |availability| %>
+                                    <% availability.time_slots_day(date).each do |slot| %>
+                                      <li>
+                                        <% if slot != "none" %>
+                                          <input type="radio" name="advisor-hours" id="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>" value="<%= slot %>"  class="advisor-hours">
+                                          <label class="hour-slot" for="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>">
+                                            <div class="block">
+                                              <div class="time w-full"><%= slot %></div>
+                                            </div>
+                                          </label>
+                                        <% else %>
+                                          <input class="none-advisor-hours" type="radio" name="advisor-hours" id="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>" value="<%= slot %>" disabled>
+                                          <label class = "hour-slot" for="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>">
+                                            <div class="block">
+                                              <div class="time w-full">-</div>
+                                            </div>
+                                          </label>
+                                        <% end %>
+                                      </li>
+                                    <% end %>
+                                  <% end %>
+                                </ul>
+                              </div>
+                            <% end %>
+                            <i class="arrow fa-solid fa-arrow-right" id="right"></i>
+                          </div>
+                        </div>
+                        <div class="voir-moins">
+                          <p id="voir-moins">Voir moins</p>
+                          <i class="fleche fa-solid fa-greater-than"></i>
+                        </div>
+                      </div>
+                      <%# <div class="mb-6">
+                          <input type="date" placeholder="01/01/2024" name="date"
+                                  class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" oninput="this.className = 'w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200'" />
+                      </div>
+                      <div class="mb-6">
+                          <input type="time" placeholder="14:30" name="time"
+                                  class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" oninput="this.className = 'w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200'" />
+                      </div> %>
+                  </div>
+
+                  <!-- step three -->
+                  <div class="step">
+                    <p class="recap text-md text-gray-700 leading-tight text-center">Your Recap</p>
+                    <div class="infos-recap">
+                      <p id="appointment-type"></p>
+                      <p id="rdv"></p>
+                    </div>
+                    <div class="recap">
+                      <div class=" mb-6">
+                        <input type="text" placeholder="First name" name="firstname"
+                              class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" oninput="this.className = 'w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200'" />
+                      </div>
+                      <div class=" mb-6">
+                        <input type="text" placeholder="Last name" name="lastname"
+                              class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" oninput="this.className = 'w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200'" />
+                      </div>
+                      <div class=" mb-6">
+                        <input type="text" placeholder="Mobile" name="mobile"
+                              class="w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200" oninput="this.className = 'w-full px-4 py-3 rounded-md text-gray-700 font-medium border-solid border-2 border-gray-200'" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Step Four -->
+                  <%# <div class="step">
+                    <h3>Merci d'avoir pris rendez-vous avec RTV</h3>
+                  </div> %>
+
+                  <!-- start previous / next buttons -->
+                  <div class="form-footer flex gap-3">
+                      <button type="button" id="prevBtn" class="flex-1 focus:outline-none border border-gray-300 py-2 px-5 rounded-lg shadow-sm text-center text-gray-700 text-lg">Previous</button>
+                      <button type="button" id="nextBtn" class="flex-1 border border-transparent focus:outline-none p-3 rounded-md text-center text-white  text-lg">Next</button>
+                      <input type="submit" id="submitBtn" value="Submit" class="flex-1 border border-transparent focus:outline-none p-3 rounded-md text-center text-white text-lg" style="display: none;">
+                  </div>
+                <% end  %>
+                <!-- end previous / next buttons -->
+              <% end %>
+              <%# <button class="next-step-button text-white inline-flex w-full justify-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                  Next step
+              </button> %>
+          </div>
+      </div>
+  </div>
+
+  <%= javascript_import_module_tag "script" %>
+  <%= javascript_import_module_tag "calendar" %>
+  <%= javascript_import_module_tag "recap" %>

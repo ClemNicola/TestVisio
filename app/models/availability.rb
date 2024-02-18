@@ -30,10 +30,10 @@ class Availability < ApplicationRecord
     all_slots = []
     advisor_availabilities = Availability.where(advisor_id: self.advisor_id)
 
-    day_availabilities = advisor_availabilities.select{ |availability| availability.covers_day?(date) }
+    day_availabilities = advisor_availabilities.select { |availability| availability.covers_day?(date) }
 
     if day_availabilities.empty?
-      typical_start = advisor_availabilities.map(&:start_time).min 
+      typical_start = advisor_availabilities.map(&:start_time).min
       typical_end = advisor_availabilities.map(&:end_time).max
 
       num_slots = ((typical_end - typical_start) / 30.minutes).to_i

@@ -12,24 +12,26 @@ class AppointmentsController < ApplicationController
 
   def new
     @appointment = Appointment.new
+
     @week_dates = week_dates
     @appointment_types = @advisor.appointment_types
-    # @appointment_types = AppointmentType.where(advisor_id: @advisor.id)
     @availabilities = @advisor.availabilities
     @appointment.user = current_user
   end
 
   def create
+
+    puts "appointment_params: #{appointment_params.inspect}"
     @appointment = @advisor.appointments.new(appointment_params)
     @appointment.user = current_user
 
-    if @appointment.save
+
+    if @advisor.available_on?(@appointment.date, @appointment.advisor_hours, @appointment.appointment_type_id) && @appointment.save
       redirect_to root_path, notice: 'Appointment was successfully created'
     else
-      # @week_dates = week_dates  # Ajoutez cette ligne
-      # @appointment_types = @advisor.appointment_types
-      # @availabilities = @advisor.availabilities
-      render :new
+      puts @appointment.errors.full_messages
+      flash[:appointment_params] = appointment_params
+      redirect_to show_advisor_path(@advisor), alert: 'There was an error creating the appointment'
     end
   end
 
@@ -61,6 +63,6 @@ class AppointmentsController < ApplicationController
   # end
 
   def appointment_params
-    params.require(:appointment).permit(:appointment_type_id, :date, :time, :status, :user_id)
+    params.require(:appointment).permit(:appointment_type_id, :advisor_hours, :date, :first_name, :last_name, :mobile, :status)
   end
 end

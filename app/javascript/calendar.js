@@ -28,13 +28,12 @@ function showLess() {
   isReduce = !isReduce;
 
 }
-
 function updateDate() {
 
 }
 
 function backDate() {
-  
+
 }
 
 document.addEventListener('DOMContentLoaded', showLess);

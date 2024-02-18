@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_22_161119) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_18_125912) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -86,8 +86,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_22_161119) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "appointment_type_id"
+    t.string "advisor_hours"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "mobile"
     t.datetime "date"
-    t.datetime "time"
     t.index ["advisor_id"], name: "index_appointments_on_advisor_id"
     t.index ["user_id"], name: "index_appointments_on_user_id"
   end
