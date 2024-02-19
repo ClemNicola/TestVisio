@@ -102,9 +102,11 @@
   <table class="table table-hover table-dark">
     <thead>
       <tr>
+        <th scope="col">User ID</th>
         <th scope="col">Status</th>
         <th scope="col">Prénom</th>
         <th scope="col">Nom</th>
+        <th scope="col">Téléphone</th>
         <th scope="col">Date</th>
         <th scope="col">Début</th>
         <th scope="col">Fin</th>
@@ -115,10 +117,15 @@
     <tbody>
       <tr>
       <% current_advisor.appointments.each do |appointment| %>
-
-        <td><%= appointment.status %></td>
-        <td><%= appointment.user.first_name %></td>
-        <td><%= appointment.user.last_name %></td>
+        <td><%= appointment.user_id %></td>
+        <td>
+          <select name = "appointment[status]">
+            <%= options_for_select(Appointment.statuses.map{|key, value| [key.humanize, key]}, appointment.status) %>
+          </select>
+        </td>
+        <td><%= appointment.first_name %></td>
+        <td><%= appointment.last_name %></td>
+        <td><%= appointment.mobile%></td>
         <td><%= appointment.date.strftime('%a-%d-%b-%Y') %></td>
         <td><%= appointment.advisor_hours %></td>
         <td><%= appointment.end_time.strftime('%H:%M')%></td>

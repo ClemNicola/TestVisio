@@ -81,7 +81,7 @@
                                           </div>
                                         </label>
                                       <% else %>
-                                        <%= f.radio_button :advisor_hours, slot, id: "advisor_hours_#{slot}_#{date.strftime('%Y-%m-%d')}", class: "noone-advisor-hours", disabled: :true %>
+                                        <%= f.radio_button :advisor_hours, slot, id: "advisor_hours_#{slot}_#{date.strftime('%Y-%m-%d')}", class: "none-advisor-hours", disabled: :true %>
                                         <label class = "hour-slot" for="advisor_hours_<%= slot %>_<%= date.strftime('%Y-%m-%d') %>">
                                           <div class="block">
                                             <div class="time w-full">-</div>

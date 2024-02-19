@@ -25,26 +25,39 @@ class Availability < ApplicationRecord
     self[day_of_week]
   end
 
+
   def time_slots_day(date)
 
     all_slots = []
+
     advisor_availabilities = Availability.where(advisor_id: self.advisor_id)
 
     day_availabilities = advisor_availabilities.select { |availability| availability.covers_day?(date) }
 
+    appointments_on_date = Appointment.where(advisor_id: self.advisor_id, date: date.beginning_of_day..date.end_of_day)
+
+    Rails.logger.info "Nombre de rendez-vous trouvés pour la date #{date} : #{appointments_on_date.count}"
+
     if day_availabilities.empty?
+      # Si day_availabilities est vide ou Si un utilisateur a déjà réservé un créneau, on ne peut pas le réserver
+      # On ajoute donc un créneau "none" pour chaque créneau horaire réservé
+      # On récupère les créneaux horaires réservés via appointment.advisor_hours
+
       typical_start = advisor_availabilities.map(&:start_time).min
       typical_end = advisor_availabilities.map(&:end_time).max
 
       num_slots = ((typical_end - typical_start) / 30.minutes).to_i
+      
+     num_slots.times{ all_slots << "none" }
 
-      num_slots.times{ all_slots << "none" }
     else
       start_day = day_availabilities.map(&:start_time).min
       end_day = day_availabilities.map(&:end_time).max
 
       current_time = start_day
+
       while current_time < end_day
+
         # Ajout du créneau horaire au format HH:MM
         all_slots << current_time.strftime('%H:%M')
 
@@ -53,22 +66,12 @@ class Availability < ApplicationRecord
     end
     all_slots
   end
-  # def time_slots
-  #   slots = []
-  #   current_time = start_time
 
-  #   while current_time < end_time
-  #     slots << current_time
-  #     current_time += 30.minutes
-  #   end
-  #   slots
+
+  # private
+
+  # def set_default_times
+  #   self.start_time ||= '09:00'
+  #   self.end_time ||= '18:00'
   # end
-
-
-  private
-
-  def set_default_times
-    self.start_time ||= '09:00'
-    self.end_time ||= '18:00'
-  end
 end
