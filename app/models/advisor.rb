@@ -28,15 +28,14 @@ class Advisor < ApplicationRecord
 
     appointment_end_time = parsed_time + appointment_duration.minutes
 
-    day_of_week = parsed_time.strftime('%A').downcase
+    # day_of_week = parsed_time.strftime('%A').downcase
 
     Rails.logger.info "Processed Date: #{date}, Parsed Time: #{parsed_time}, Appointment End Time: #{appointment_end_time}"
-    Rails.logger.info "Day of Week: #{day_of_week}"
+    # Rails.logger.info "Day of Week: #{day_of_week}"
 
-    # Rails.logger.info "Appointment Start Time: #{parsed_time}"
-    # Rails.logger.info "Appointment End Time: #{appointment_end_time}"
     availabilities.each do |availability|
-      next unless availability[day_of_week]
+      # next unless availability[day_of_week]
+      next unless availability.covers_day?(parsed_time)
 
       availability_start = availability.start_time.change(year: parsed_time.year, month: parsed_time.month, day: parsed_time.day)
       availability_end = availability.end_time.change(year: appointment_end_time.year, month: appointment_end_time.month, day: appointment_end_time.day)
@@ -44,29 +43,6 @@ class Advisor < ApplicationRecord
       return true if availability_start <= parsed_time && availability_end >= appointment_end_time
     end
     false
-    # availabilities.any? do |availability|
-    #   Rails.logger.info "Availability Start Time: #{availability.start_time}, Availability Start Date: #{availability.start_time.to_date}"
-    #   Rails.logger.info "Availability End Time: #{availability.end_time}"
-    #   Rails.logger.info "Test cover day: #{availability.covers_day?(date)}"
 
-    #  if availability.start_time.to_date == date &&
-    #     availability.start_time <= parsed_time &&
-    #     availability.end_time >= appointment_end_time
-
-    #     Rails.logger.info "Availability matches for: #{availability.inspect}"
-    #     return true
-
-    #   else
-    #     Rails.logger.info "Availability does not match for: #{availability.inspect}"
-    #   end
-    # end
-    # false
   end
-
-
-  private
-
-  # def time_within_availability?(availability, start_time, end_time)
-  #   availability.start_time <= start_time && availability.end_time >= end_time
-  # end
 end
