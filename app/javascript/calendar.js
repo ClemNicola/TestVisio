@@ -1,5 +1,5 @@
-const show = document.querySelector('#voir-moins')
-const arrow = document.querySelector('.fleche')
+const show = document.querySelector('.voir-moins')
+// const arrow = document.querySelector('.fleche')
 const columns = document.querySelectorAll('.day-selector')
 
 const arrowRight = document.getElementById('right')
@@ -18,13 +18,22 @@ function showLess() {
     const slotsToggle = Array.from(slots).slice(10);
 
     slotsToggle.forEach(slot => {
-      slot.style.display = isReduce ? "none" : "";
+      slot.style.display = isReduce ? "none" : ""
     });
+
 
   });
 
   show.textContent = isReduce ? 'Voir plus' : 'Voir moins';
-  arrow.style.transform = isReduce ? "rotate(90deg)" : "rotate(-90deg)";
+
+  if (!show.querySelector('.fleche')) {
+    let i = document.createElement('i');
+    i.classList.add('fleche', 'fa-solid', 'fa-greater-than');
+    show.appendChild(i);
+    i.style.transform = isReduce ? "rotate(90deg)" : "";
+    i.style.margin = "0 1rem"
+  }
+
   isReduce = !isReduce;
 
 }

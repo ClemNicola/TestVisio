@@ -7,19 +7,7 @@ class Availability < ApplicationRecord
 
   before_validation :set_default_times, on: :create
 
-  # DAYS_OF_WEEK = {
-  #   'Monday' => 0,
-  #   'Tuesday' => 1,
-  #   'Wednesday' => 2,
-  #   'Thursday' => 3,
-  #   'Friday' => 4,
-  #   'Saturday' => 5,
-  #   'Sunday' => 6
-  # }
 
-  # def self.day_of_week_options
-  #   DAYS_OF_WEEK.map { |name, number| [name, number] }
-  # end
   def covers_day?(date)
     day_of_week = date.strftime('%A').downcase
     self[day_of_week]
@@ -34,9 +22,11 @@ class Availability < ApplicationRecord
 
     day_availabilities = advisor_availabilities.select { |availability| availability.covers_day?(date) }
 
-    appointments_on_date = Appointment.where(advisor_id: self.advisor_id, date: date.beginning_of_day..date.end_of_day)
+    appointments_date = Appointment.where(advisor_id: self.advisor_id, date: date.beginning_of_day..date.end_of_day)
 
-    Rails.logger.info "Nombre de rendez-vous trouvés pour la date #{date} : #{appointments_on_date.count}"
+    appointment_hours = appointments_date.map(&:advisor_hours)
+
+    Rails.logger.info "Nombre de rendez-vous trouvés pour la date #{date} : #{appointments_date.count} à #{appointment_hours}"
 
     if day_availabilities.empty?
       # Si day_availabilities est vide ou Si un utilisateur a déjà réservé un créneau, on ne peut pas le réserver
@@ -47,7 +37,7 @@ class Availability < ApplicationRecord
       typical_end = advisor_availabilities.map(&:end_time).max
 
       num_slots = ((typical_end - typical_start) / 30.minutes).to_i
-      
+
      num_slots.times{ all_slots << "none" }
 
     else
@@ -59,7 +49,13 @@ class Availability < ApplicationRecord
       while current_time < end_day
 
         # Ajout du créneau horaire au format HH:MM
-        all_slots << current_time.strftime('%H:%M')
+        slot = current_time.strftime('%H:%M')
+
+        if appointment_hours.include?(slot)
+          all_slots << "none"
+        else
+          all_slots << slot
+        end
 
         current_time += 30.minutes
       end

@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', (event) => {
+
+  const modalButton = document.getElementById('my-modal-btn');
+  modalButton.addEventListener('click', function(){
+    modalButton.style.display = 'block';
+  })
   let currentTab = 0; // Initialise l'onglet actuel à 0
   showTab(currentTab); // Affiche l'onglet actuel
 
