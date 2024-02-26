@@ -1,0 +1,7 @@
+<h1>Welcome to example.com, <%= @user.first_name%> - <%= @user.last_name %></h1>
+  <p>
+    You have successfully made ane appointment with <%= @advisor.first_name %>
+    Your appointment is scheduled for <%= @appointment.date.strftime('%d-%m-%Y') %> at <%= @appointment.advisor_hours %>
+    Appointment Type : <%= @appointment.appointment_type.name %>
+  </p>
+<p>you will receive an e-mail in the next 2 days to let you know if your appointment has been validated by <%= @advisor.first_name %></p>

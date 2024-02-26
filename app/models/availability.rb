@@ -64,10 +64,10 @@ class Availability < ApplicationRecord
   end
 
 
-  # private
+  private
 
-  # def set_default_times
-  #   self.start_time ||= '09:00'
-  #   self.end_time ||= '18:00'
-  # end
+  def set_default_times
+    self.start_time ||= '09:00'
+    self.end_time ||= '18:00'
+  end
 end
