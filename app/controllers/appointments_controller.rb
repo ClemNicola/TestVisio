@@ -28,6 +28,7 @@ class AppointmentsController < ApplicationController
 
     if @advisor.available_on?(@appointment.date, @appointment.advisor_hours, @appointment.appointment_type_id) && @appointment.save
       NotifierMailer.appointment_email(@appointment.user, @advisor, @appointment).deliver_now
+      NotifierMailer.validation_email(@appointment.user, @advisor, @appointment, @appointment.status).deliver_now
       redirect_to root_path, notice: 'Appointment was successfully created'
     else
       puts @appointment.errors.full_messages
