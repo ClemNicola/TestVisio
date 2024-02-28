@@ -1,7 +1,7 @@
 Dear, <%= @user.first_name%> - <%= @user.last_name %>
 
-<%# attention cela impact la sauvegarde de mon appointment, il faut différer l'envoi %>
-<% if status == "approved" %>
+
+<% if @status == "approved" %>
   <p>Your appointment with <%= @advisor.first_name %> has been approved</p>
 <% else %>
   <p>Unfortunately your appointment with <%= @advisor.first_name %> has been unapproved</p>

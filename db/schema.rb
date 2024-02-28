@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_18_125912) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_28_185950) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -95,6 +95,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_18_125912) do
     t.index ["user_id"], name: "index_appointments_on_user_id"
   end
 
+  create_table "archived_appointments", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "advisor_id", null: false
+    t.bigint "appointment_type_id", null: false
+    t.datetime "date"
+    t.integer "status"
+    t.string "reason"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "advisor_hours"
+    t.index ["advisor_id"], name: "index_archived_appointments_on_advisor_id"
+    t.index ["appointment_type_id"], name: "index_archived_appointments_on_appointment_type_id"
+    t.index ["user_id"], name: "index_archived_appointments_on_user_id"
+  end
+
   create_table "availabilities", force: :cascade do |t|
     t.bigint "advisor_id", null: false
     t.datetime "start_time"
@@ -132,5 +147,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_18_125912) do
   add_foreign_key "appointment_types", "advisors"
   add_foreign_key "appointments", "advisors"
   add_foreign_key "appointments", "users"
+  add_foreign_key "archived_appointments", "advisors"
+  add_foreign_key "archived_appointments", "appointment_types"
+  add_foreign_key "archived_appointments", "users"
   add_foreign_key "availabilities", "advisors"
 end

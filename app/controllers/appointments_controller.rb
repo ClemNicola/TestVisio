@@ -1,6 +1,7 @@
 class AppointmentsController < ApplicationController
   # before_action :authenticate_an!
-  before_action :set_advisor, only: %i[show new create ]
+  before_action :set_advisor, only: %i[show new create]
+
   # before_action :set_appointment, only: %i[show edit update destroy]
 
   def index
@@ -25,10 +26,8 @@ class AppointmentsController < ApplicationController
     @appointment = @advisor.appointments.new(appointment_params)
     @appointment.user = current_user
 
-
     if @advisor.available_on?(@appointment.date, @appointment.advisor_hours, @appointment.appointment_type_id) && @appointment.save
       NotifierMailer.appointment_email(@appointment.user, @advisor, @appointment).deliver_now
-      # NotifierMailer.validation_email(@appointment.user, @advisor, @appointment, @appointment.status).deliver_now
       redirect_to root_path, notice: 'Appointment was successfully created'
     else
       puts @appointment.errors.full_messages
@@ -44,8 +43,10 @@ class AppointmentsController < ApplicationController
   # end
   def update_status
     @appointment = Appointment.find(params[:id])
+    @advisor = current_advisor
     if @appointment.update(appointment_params)
-      @appointment.delete if @appointment.status == "unapproved"
+      @appointment.destroy if @appointment.status == "unapproved"
+      NotifierMailer.validation_email(@appointment.user, @advisor, @appointment.status).deliver_now
       redirect_to pages_advisors_path, notice: 'Appointment status was successfully updated.'
     else
       flash[:alert] = 'Error updating appointment failed'

@@ -9,10 +9,9 @@ class NotifierMailer < ApplicationMailer
     mail(to: @user.email, subject: 'RTV - Your New Appointment')
   end
 
-  def validation_email(user, advisor, appointment,status)
+  def validation_email(user, advisor,status)
     @advisor = advisor
     @user = user
-    @appointment = appointment
     @status = status
 
     subject = if @status == "approved"
