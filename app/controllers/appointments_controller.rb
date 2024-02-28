@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
   # before_action :authenticate_an!
-  before_action :set_advisor, only: %i[show new create]
-  before_action :set_appointment, only: %i[show edit update destroy]
+  before_action :set_advisor, only: %i[show new create ]
+  # before_action :set_appointment, only: %i[show edit update destroy]
 
   def index
     @appointments = Appointment.where(advisor_id: @advisor.id)
@@ -28,7 +28,7 @@ class AppointmentsController < ApplicationController
 
     if @advisor.available_on?(@appointment.date, @appointment.advisor_hours, @appointment.appointment_type_id) && @appointment.save
       NotifierMailer.appointment_email(@appointment.user, @advisor, @appointment).deliver_now
-      NotifierMailer.validation_email(@appointment.user, @advisor, @appointment, @appointment.status).deliver_now
+      # NotifierMailer.validation_email(@appointment.user, @advisor, @appointment, @appointment.status).deliver_now
       redirect_to root_path, notice: 'Appointment was successfully created'
     else
       puts @appointment.errors.full_messages
@@ -37,14 +37,37 @@ class AppointmentsController < ApplicationController
     end
   end
 
-  def edit
+  # def edit
+  # end
+
+  # def update
+  # end
+  def update_status
+    @appointment = Appointment.find(params[:id])
+    if @appointment.update(appointment_params)
+      @appointment.delete if @appointment.status == "unapproved"
+      redirect_to pages_advisors_path, notice: 'Appointment status was successfully updated.'
+    else
+      flash[:alert] = 'Error updating appointment failed'
+      redirect_to pages_advisors_path
+    end
   end
 
-  def update
-  end
+  # def destroy
+  #   raise
+  #   @appointment = Appointment.find(params[:id])
+  #   Rails.logger.debug "Destroy status: #{@appointment.status.inspect}"
+  #   if @appointment.unapproved? || @appointment.date < Time.zone.now
+  #     @appointment.delete
+  #     flash[:success] = "The appointment was successfully destroyed."
+  #     redirect_to pages_advisors_path
+  #   else
+  #     flash[:alert] = 'There was an error deleting the appointment'
+  #     redirect_to pages_advisors_path
+  #   end
 
-  def destroy
-  end
+  # end
+
 
   private
 

@@ -119,9 +119,10 @@
       <% current_advisor.appointments.each do |appointment| %>
         <td><%= appointment.user_id %></td>
         <td>
-          <select name = "appointment[status]">
-            <%= options_for_select(Appointment.statuses.map{|key, value| [key.humanize, key]}, appointment.status) %>
-          </select>
+          <%= form_with model: appointment, url: update_status_appointment_path(appointment), method: :patch do |f| %>
+            <%= f.select :status, Appointment.statuses.map{|key, value| [key.humanize, key]}, selected: appointment.status %>
+            <%= f.submit "Update satus", class: "status" %>
+          <% end %>
         </td>
         <td><%= appointment.first_name %></td>
         <td><%= appointment.last_name %></td>

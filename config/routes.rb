@@ -14,6 +14,11 @@ Rails.application.routes.draw do
     resources :appointment_types
   end
 
+
+  resources :appointments do
+    patch :update_status, on: :member
+  end
+
   resources :advisors do
     resources :appointment_types
     resources :appointments

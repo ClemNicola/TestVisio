@@ -15,7 +15,7 @@ class NotifierMailer < ApplicationMailer
     @appointment = appointment
     @status = status
 
-    subject = if @status == "Approved"
+    subject = if @status == "approved"
                 'RTV - Your Appointment Has Been Approved'
               else
                 'RTV - Your Appointment Has Been Disapproved'

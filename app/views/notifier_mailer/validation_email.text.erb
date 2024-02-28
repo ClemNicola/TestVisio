@@ -1,0 +1,9 @@
+Dear, <%= @user.first_name%> - <%= @user.last_name %>
+
+<% if status == "Approved" %>
+  Your appointment with <%= @advisor.first_name %> has been approved
+<% else %>
+  Unfortunately your appointment with <%= @advisor.first_name %> has been unapproved
+<% end  %>
+
+Thank You, the RTV team
