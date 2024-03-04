@@ -1,4 +1,68 @@
 // Specific CSS for your home-page
+
+.bg-image{
+  background-image: image-url('velo-2.png'), linear-gradient(to right, rgb(0,29,61), rgb(8, 8, 7));
+  height: 35rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.container-info{
+  padding-left: 5.5rem;
+  // padding-top: 5.5rem;
+  position: relative;
+  z-index: 2; /* Assurez-vous que c'est au-dessus du fond */
+}
+
+#pvu{
+  color: #FCFCFC; /* Utilisez des couleurs contrastées pour le texte */
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+  position: relative;
+  z-index: 3; /* Texte au-dessus du conteneur-info */
+}
+
+h2{
+  color: #FFD60A; /* Utilisez des couleurs contrastées pour le texte */
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.form-label{
+  color: #fcfcfc;
+  font-family: 'Exo 2', sans-serif;
+  font-size: x-large;
+  font-weight: 200;
+}
+.form-input{
+  width: 30vw;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border:none;
+}
+
+.btn-form{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 0 8px;
+  background-color:#FFD60A;
+  color:#001D3D;
+  font-family: 'Exo 2', sans-serif;
+  transition: 0.3s ease-in-out;
+
+  &:hover{
+    background-color:#FFC300;
+  }
+}
+
+
 .card-advisor {
   overflow: hidden;
   height: 400px;

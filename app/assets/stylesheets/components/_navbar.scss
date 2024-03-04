@@ -1,6 +1,11 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: #001D3D;
+}
+
+.navbar-brand{
+  padding: 0 1rem;
+  font-size: 1.7rem;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -12,5 +17,47 @@
 }
 
 .nav-item > a {
-  color: black !important;
+  color: #FCFCFC !important;
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 200;
+  margin-right: 1rem;
+  position: relative;
+}
+
+.nav-link:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #FFD60A;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+.nav-link:hover:after {
+  width: 100%;
+  left: 0;
+  color: #FFD60A
+}
+
+
+
+span{
+  font-family: 'Exo 2', sans-serif;
+  font-weight: bold;
+  font-style: italic;
+
+  &.white{
+    color: #F9E581;
+  }
+
+  &.yellow{
+    color: #FFD60A;
+  }
+
+  &.dark-yellow{
+    color: #FFC300;
+  }
 }
