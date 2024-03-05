@@ -6,7 +6,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
   position: relative;
@@ -64,9 +64,9 @@ h2{
 
 
 .card-advisor {
-  overflow: hidden;
-  height: 400px;
-  background: white;
+  position: relative;
+  height: 420px;
+  background: #f9e581de;
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
@@ -74,25 +74,72 @@ h2{
   border-radius: 5px;
 }
 
+.card-advisor::before {
+  content: '';
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 30%;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+  z-index: 1;
+
+}
+
 .card-advisor img {
-  height: 50%;
+  height: 70%;
   width: 100%;
   object-fit: cover;
+  position: relative;
+  z-index: 0;
+
+}
+
+.card-advisor #advisor-name, .card-advisor h6, .card-advisor #loc{
+  position: absolute;
+  z-index: 2;
+  color: white;
+  width: 100%;
+  margin-left: 2rem;
+}
+
+.card-advisor #advisor-name {
+  bottom: 45%;
+  font-size: x-large;
+
+}
+
+.card-advisor h6 {
+  bottom: 38%;
+  font-family: 'Raleway', sans-serif;
+  font-size: large;
+}
+
+.card-advisor #loc{
+  bottom: 30%;
+  font-family: 'Raleway', sans-serif;
+  font-size: small;
 }
 
 .advisor-info{
-  padding: 3vh ;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+  z-index: 2;
+  position: relative;
+  border-bottom: solid 0.5px #001D3D;
 }
 
-.advisor-info h2 {
-  font-size: 16px;
-  font-weight: bold;
-}
 
+.advisor-info #bio {
+  margin: 0px;
+  font-size: 14px;
+  font-family: 'Raleway', sans-serif;
+  color: #001D3D;
+
+}
 .advisor-info a {
   font-size: 12px;
   line-height: 1.4;
@@ -110,3 +157,18 @@ h2{
   justify-content: center;
   align-items: center;
 }
+
+.parent-rdv{
+  width: 100%;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  text-align: center;
+}
+
+.parent-rdv > .rdv{
+  text-decoration: none;
+  color: #001D3D;
+  font-size: 13px;
+  font-family: 'Exo 2', sans-serif;
+  font-weight:bold ;
+ }

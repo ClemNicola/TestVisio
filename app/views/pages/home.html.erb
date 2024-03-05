@@ -19,16 +19,26 @@
  <div class="container mt-4">
     <div class="grid grid-cols-4 gap-4">
       <% @advisors.each do |advisor| %>
-          <div class="card-advisor">
-            <img src="https://source.unsplash.com/random/?portrait" alt="Advisors">
-            <div class="advisor-info">
-              <h2><%= "#{advisor.first_name} #{advisor.last_name}" %></h2>
-              <h6><%= advisor.speciality%></h6>
-              <p><%= advisor.address%>, <%= advisor.city %></p>
-              <%= link_to "prendre rendez-vous", show_advisor_path(advisor) %>
-            </div>
+        <div class="card-advisor">
+          <img src="https://source.unsplash.com/random/?portrait" alt="Advisors">
+          <h2 id="advisor-name"><%= "#{advisor.first_name} #{advisor.last_name}" %></h2>
+          <h6><%= advisor.speciality%></h6>
+          <p id="loc"><%= advisor.address%>, <strong><%= advisor.city %></strong></p>
+          <div class="advisor-info">
+            <p id="bio"><%= advisor.bio %></p>
           </div>
+          <div class="parent-rdv">
+            <%= link_to "prendre rendez-vous", show_advisor_path(advisor), class: "rdv" %>
+          </div>
+        </div>
       <% end  %>
     </div>
   </div>
 </div>
+
+
+<script>
+  let advisors = <%= @advisors.to_json.html_safe %>;
+</script>
+
+<%= javascript_import_module_tag "search" %>
