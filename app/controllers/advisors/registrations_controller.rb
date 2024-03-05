@@ -25,7 +25,7 @@ class Advisors::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :bio, :speciality])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :bio, :speciality, :address, :city])
   end
   # GET /resource/edit
   # def edit

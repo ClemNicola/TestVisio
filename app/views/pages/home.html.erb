@@ -17,18 +17,17 @@
 </div>
 
  <div class="container mt-4">
-    <div class="row">
+    <div class="grid grid-cols-4 gap-4">
       <% @advisors.each do |advisor| %>
-        <div class="col-sm">
           <div class="card-advisor">
             <img src="https://source.unsplash.com/random/?portrait" alt="Advisors">
             <div class="advisor-info">
               <h2><%= "#{advisor.first_name} #{advisor.last_name}" %></h2>
               <h6><%= advisor.speciality%></h6>
+              <p><%= advisor.address%>, <%= advisor.city %></p>
               <%= link_to "prendre rendez-vous", show_advisor_path(advisor) %>
             </div>
           </div>
-        </div>
       <% end  %>
     </div>
   </div>

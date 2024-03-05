@@ -6,14 +6,16 @@ class Advisor < ApplicationRecord
   has_many :users, through: :appointments
   has_many :availabilities, dependent: :destroy
   has_many :appointment_types, dependent: :destroy
-  has_many :appointments
+  has_many :appointments, dependent: :destroy
 
+  validates :address, presence: true
   validates :bio, presence: true
-  validates :speciality, presence: true, inclusion: { in: ['Finance Verte', 'Retraite', 'Optimisation fiscale'] }
+  validates :speciality, presence: true, inclusion: { in: ['Vélo', 'Vélo vintage', 'VAE', 'Vélo Cargo'] }
   validates :email, presence: true, uniqueness: true
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :password, presence: true
+  validates :city, presence: true
 
   def available_on?(date, advisor_hours, appointment_type_id)
 

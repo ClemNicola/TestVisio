@@ -7,6 +7,25 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+require 'faker'
+
+cities = %w[Paris Bordeaux Nantes Lyon Marseille Strasbourg Lille]
+
+specialities = ['Vélo', 'Vélo vintage', 'VAE', 'Vélo Cargo']
+
+bio = ["Nous avons tout l'équipement nécessaire pour réparer et entretenir tous types de vélos.",
+  "Mon atelier est équipé des dernières technologies pour diagnostiquer précisément les problèmes.",
+  "Je garde une large sélection de pièces détachées pour pouvoir réparer votre vélo rapidement.",
+  "L'atelier dispose d'un espace dédié à la personnalisation et à la modification de vélos.",
+  "J'utilise uniquement des outils de haute qualité pour garantir les meilleures réparations.",
+  "Notre zone de travail est organisée pour traiter efficacement chaque vélo qui nous est confié.",
+  "Je me tiens à jour avec les dernières innovations en matière de vélo pour offrir le meilleur service possible.",
+  "L'atelier est conçu pour offrir une expérience complète, de la réparation à l'amélioration de performances."
+]
+
+names = ["Révision complète et entretien préventif ", "Réparation spécifique", "Montage personnalisé et mise à niveau"]
+locations = ["En magasin", "A domicile", "En entreprise"]
+durations = [30, 45, 90]
 
 puts "Destroy User"
 Advisor.destroy_all
@@ -22,36 +41,45 @@ User.create(
   # encrypted_password: "123456"
 )
 
-Advisor.create!(
-  email: "jean@test.com",
-  first_name: "Jean",
-  last_name: "Darraud",
-  password: "123456",
-  # encrypted_password: "123456",
-  bio: 'Je suis un conseiller en gestion de patrimoine expérimenté.',
-  speciality: 'Finance Verte'
-)
+20.times do
+  advisor = Advisor.create!(
+    email: Faker::Internet.email,
+    first_name: Faker::Name.first_name,
+    last_name: Faker::Name.last_name,
+    password: "123456",
+    bio: bio.sample,
+    speciality: specialities.sample,
+    address: Faker::Address.street_address,
+    city: cities.sample
+  )
 
-Advisor.create!(
-  email: "fab@test.com",
-  first_name: "Fab",
-  last_name: "Darraud",
-  password: "123456",
-  # encrypted_password: "123456",
-  bio: 'Je suis un conseiller en gestion de patrimoine expérimenté.',
-  speciality: 'Finance Verte'
-)
+  names.each do |name|
+    AppointmentType.create!(
+      advisor_id: advisor.id,
+      name: name,
+      location: locations.sample,
+      duration: durations.sample
+    )
+  end
 
-Advisor.create!(
-  email: "greg@test.com",
-  first_name: "Greg",
-  last_name: "Darraud",
-  password: "123456",
-  # encrypted_password: "123456",
-  bio: 'Je suis un conseiller en gestion de patrimoine expérimenté.',
-  speciality: 'Finance Verte'
-)
+
+  Availability.create!(
+    advisor_id: advisor.id,
+    start_time: DateTime.now.beginning_of_day + 9.hours,
+    end_time: DateTime.now.beginning_of_day + 18.hours,
+    monday: false,
+    tuesday: true,
+    wednesday: true,
+    thursday: true,
+    friday: true,
+    saturday: true,
+    sunday: false
+  )
+end
+
 puts "Creating Advisor"
+puts "Creating AppointmentType"
+puts "Creating Availability"
 
 # if jean.is_advisor?
 #   Advisor.create!(
